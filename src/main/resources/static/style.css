@@ -11,6 +11,10 @@ body {
     line-height: 1.6;
 }
 
+.lang-switch {
+    cursor: pointer;
+}
+
 a { text-decoration: none; color: inherit; }
 li { list-style: none; }
 
