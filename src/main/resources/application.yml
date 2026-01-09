@@ -1,0 +1,13 @@
+spring:
+  thymeleaf:
+    cache: false
+  servlet:
+    multipart:
+      max-file-size: 20MB
+      max-request-size: 20MB
+
+app:
+  upload-dir: ${UPLOAD_DIR:./uploads}
+
+server:
+  port: 8080

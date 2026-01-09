@@ -1,0 +1,38 @@
+services:
+  db:
+    image: mysql:8.0
+    environment:
+      MYSQL_ROOT_PASSWORD: root
+      MYSQL_DATABASE: cariv_home
+      MYSQL_USER: cariv
+      MYSQL_PASSWORD: cariv
+      TZ: Asia/Seoul
+    ports:
+      - "3306:3306"
+    volumes:
+      - db-data:/var/lib/mysql
+    command: ["mysqld","--character-set-server=utf8mb4","--collation-server=utf8mb4_0900_ai_ci"]
+
+  app:
+    build: .
+    depends_on:
+      - db
+    environment:
+      SPRING_PROFILES_ACTIVE: prod
+      DB_HOST: db
+      DB_PORT: 3306
+      DB_NAME: cariv_home
+      DB_USER: cariv
+      DB_PASSWORD: cariv
+      UPLOAD_DIR: /uploads
+      ADMIN_USERNAME: admin
+      ADMIN_PASSWORD: admin1234
+      TZ: Asia/Seoul
+    ports:
+      - "8080:8080"
+    volumes:
+      - uploads:/uploads
+
+volumes:
+  db-data:
+  uploads:

@@ -1,0 +1,42 @@
+package carivex.homepages.domain.storage;
+
+import org.springframework.beans.factory.annotation.Value;
+import org.springframework.stereotype.Service;
+import org.springframework.util.StringUtils;
+import org.springframework.web.multipart.MultipartFile;
+
+import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.util.UUID;
+
+@Service
+public class FileStorageService {
+
+    private final Path root;
+
+    public FileStorageService(@Value("${app.upload-dir:./uploads}") String uploadDir) {
+        this.root = Path.of(uploadDir).toAbsolutePath().normalize();
+    }
+
+    public StoredFile storeSingle(MultipartFile file) throws IOException {
+        if (file == null || file.isEmpty()) return null;
+
+        Files.createDirectories(root);
+
+        String original = StringUtils.cleanPath(file.getOriginalFilename() == null ? "file" : file.getOriginalFilename());
+        String ext = "";
+        int idx = original.lastIndexOf('.');
+        if (idx > -1) ext = original.substring(idx);
+
+        String stored = UUID.randomUUID() + ext;
+        Path target = root.resolve(stored);
+        Files.copy(file.getInputStream(), target);
+
+        return new StoredFile(original, stored);
+    }
+
+    public Path resolve(String storedName) {
+        return root.resolve(storedName).normalize();
+    }
+}

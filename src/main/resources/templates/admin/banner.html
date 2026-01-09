@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>관리자 시스템 - 배너 관리</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        .sidebar {
+            min-height: 100vh;
+            background-color: #343a40;
+            color: white;
+            width: 250px;
+            position: fixed;
+            z-index: 100;
+        }
+        .sidebar a {
+            color: #adb5bd;
+            text-decoration: none;
+            padding: 15px 20px;
+            display: block;
+            border-bottom: 1px solid #495057;
+        }
+        .sidebar a:hover, .sidebar a.active {
+            background-color: #1D7C4D;
+            color: white;
+        }
+        .content {
+            margin-left: 250px;
+            padding: 30px;
+        }
+        .banner-preview {
+            width: 150px;
+            height: 80px;
+            object-fit: cover;
+            border-radius: 5px;
+            border: 1px solid #ddd;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="sidebar">
+        <div style="font-size: 20px; font-weight: bold; padding: 20px; background: #212529; text-align: center;">
+            관리자 페이지
+        </div>
+        <a href="./write.html">조합 소개 수정</a>
+        <a href="./write.html">사업 안내 수정</a>
+        <a href="./banner.html" class="active">배너 관리</a>
+        <a href="./notice.html">공지사항 관리</a>
+        <a href="./resource.html">자료실 관리</a>
+        <a href="./inquiry.html">문의 관리</a> 
+        <a href="/" target='../index.html' class="mt-5">홈페이지 바로가기</a>
+        <a href="/admin/logout" class="text-danger">로그아웃</a>
+    </div>
+
+    <div class="content">
+        <div class="d-flex justify-content-between align-items-center mb-4 pb-2 border-bottom">
+            <h2>메인 배너 관리</h2>
+            <button class="btn btn-primary" style="background-color: #1D7C4D; border:none;" data-bs-toggle="modal" data-bs-target="#addBannerModal">+ 배너 추가</button>
+        </div>
+
+        <div class="card shadow-sm mb-4">
+            <div class="card-header bg-white fw-bold">배너 목록</div>
+            <div class="card-body p-0">
+                <table class="table table-hover align-middle text-center mb-0">
+                    <thead class="table-light">
+                        <tr>
+                            <th>No</th>
+                            <th>이미지 미리보기</th>
+                            <th>배너 제목</th>
+                            <th>관리</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr th:each="bn : ${banners}">
+                            <td th:text="${bn.id}">1</td>
+                            <td th:text="${bn.title}">제목</td>
+                            <td>
+                                <a th:if="${bn.linkUrl != null}" th:href="${bn.linkUrl}" th:text="${bn.linkUrl}" target="_blank">링크</a>
+                            </td>
+                            <td th:text="${bn.active ? 'Y' : 'N'}">Y</td>
+                            <td th:text="${bn.sortOrder}">0</td>
+                            <td>
+                                <a th:if="${bn.imageStoredName != null}"
+                                   th:href="@{/files/{stored}(stored=${bn.imageStoredName}, name=${bn.imageOriginalName})}"
+                                   th:text="${bn.imageOriginalName}">download</a>
+                            </td>
+                            <td>
+                                <form th:action="@{/admin/delete}" method="post" style="display:inline;">
+                                    <input type="hidden" name="type" value="banner">
+                                    <input type="hidden" name="id" th:value="${bn.id}">
+                                    <button type="submit" class="btn btn-sm btn-outline-danger" onclick="return confirm('삭제할까요?');">삭제</button>
+                                </form>
+                            </td>
+                        </tr>
+                        <tr th:if="${#lists.isEmpty(banners)}">
+                            <td colspan="7" class="text-center">배너가 없습니다.</td>
+                        </tr>
+
+</tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal fade" id="addBannerModal" tabindex="-1">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">새 배너 등록</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                </div>
+                <div class="modal-body">
+                    <form th:action="@{/admin/banner/save}" action="/admin/banner/save" method="post" enctype="multipart/form-data" class="mb-4">
+    <div th:if="${error}" class="alert alert-danger" th:text="${error}">에러</div>
+    <div class="row g-2 align-items-end">
+        <div class="col-md-3">
+            <label class="form-label">제목</label>
+            <input class="form-control" name="title" required>
+        </div>
+        <div class="col-md-4">
+            <label class="form-label">링크 URL</label>
+            <input class="form-control" name="linkUrl" placeholder="https://...">
+        </div>
+        <div class="col-md-2">
+            <label class="form-label">정렬</label>
+            <input class="form-control" name="sortOrder" type="number" value="0">
+        </div>
+        <div class="col-md-1">
+            <label class="form-label">활성</label>
+            <div class="form-check">
+                <input class="form-check-input" type="checkbox" name="active" checked>
+            </div>
+        </div>
+        <div class="col-md-2">
+            <label class="form-label">이미지(1개)</label>
+            <input class="form-control" type="file" name="image">
+        </div>
+        <div class="col-12">
+            <button class="btn btn-primary mt-2" type="submit">배너 추가</button>
+        </div>
+    </div>
+</form>
+
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">취소</button>
+                    <button type="button" class="btn btn-primary" style="background-color: #1D7C4D; border:none;">등록하기</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

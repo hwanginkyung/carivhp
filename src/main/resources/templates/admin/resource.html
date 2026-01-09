@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>관리자 - 자료실 관리</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        .sidebar {
+            min-height: 100vh;
+            background-color: #343a40;
+            color: white;
+            width: 250px;
+            position: fixed;
+            z-index: 100;
+        }
+        .sidebar a {
+            color: #adb5bd;
+            text-decoration: none;
+            padding: 15px 20px;
+            display: block;
+            border-bottom: 1px solid #495057;
+        }
+        .sidebar a:hover,
+        .sidebar a.active {
+            background-color: #1D7C4D;
+            color: white;
+        }
+        .content {
+            margin-left: 250px;
+            padding: 30px;
+        }
+    </style>
+</head>
+<body>
+
+<!-- 사이드바 -->
+<div class="sidebar">
+    <div style="font-size:20px;font-weight:bold;padding:20px;background:#212529;text-align:center;">
+        관리자 페이지
+    </div>
+
+    <a th:href="@{/admin/write.html(type='intro')}">조합 소개 수정</a>
+    <a th:href="@{/admin/write.html(type='business')}">사업 안내 수정</a>
+    <a th:href="@{/admin/banner.html}">배너 관리</a>
+    <a th:href="@{/admin/notice.html}">공지사항 관리</a>
+    <a th:href="@{/admin/resource.html}" class="active">자료실 관리</a>
+    <a th:href="@{/admin/inquiry.html}">문의 관리</a>
+
+    <a th:href="@{/}" class="mt-5">홈페이지 바로가기</a>
+    <a th:href="@{/admin/logout}" class="text-danger">로그아웃</a>
+</div>
+
+<!-- 본문 -->
+<div class="content">
+
+    <div class="d-flex justify-content-between align-items-center mb-4 pb-2 border-bottom">
+        <h2>자료실 관리</h2>
+        <a th:href="@{/admin/write.html(type='resource')}"
+           class="btn btn-primary"
+           style="background-color:#1D7C4D;border:none;">
+            + 자료 등록
+        </a>
+    </div>
+
+    <div class="card shadow-sm">
+        <div class="card-body p-0">
+            <table class="table table-hover mb-0 text-center align-middle">
+                <thead class="table-light">
+                <tr>
+                    <th style="width:60px;">No</th>
+                    <th style="width:150px;">분류</th>
+                    <th>제목</th>
+                    <th style="width:100px;">첨부</th>
+                    <th style="width:150px;">등록일</th>
+                    <th style="width:150px;">관리</th>
+                </tr>
+                </thead>
+
+                <tbody>
+                <tr th:each="r : ${resources}">
+                    <td th:text="${r.id}">1</td>
+
+                    <td>
+                        <span class="badge bg-secondary"
+                              th:text="${r.category.label}">
+                            분류
+                        </span>
+                    </td>
+
+                    <td class="text-start">
+                        <a class="text-decoration-none text-dark"
+                           th:href="@{/admin/view_resource.html(id=${r.id})}"
+                           th:text="${r.title}">
+                            제목
+                        </a>
+                    </td>
+
+                    <td>
+                        <a th:if="${r.filePath != null}"
+                           th:href="@{/files/{path}(path=${r.filePath})}">
+                            💾
+                        </a>
+                    </td>
+
+                    <td th:text="${#temporals.format(r.createdAt,'yyyy-MM-dd')}">
+                        2025-01-02
+                    </td>
+
+                    <td>
+                        <a th:href="@{/admin/write.html(type='resource', id=${r.id})}"
+                           class="btn btn-sm btn-outline-primary">
+                            수정
+                        </a>
+
+                        <form th:action="@{/admin/delete}"
+                              method="post"
+                              style="display:inline;">
+                            <input type="hidden" name="type" value="resource">
+                            <input type="hidden" name="id" th:value="${r.id}">
+                            <button type="submit"
+                                    class="btn btn-sm btn-outline-danger"
+                                    onclick="return confirm('삭제할까요?');">
+                                삭제
+                            </button>
+                        </form>
+                    </td>
+                </tr>
+
+                <tr th:if="${#lists.isEmpty(resources)}">
+                    <td colspan="6" class="text-center">
+                        등록된 자료가 없습니다.
+                    </td>
+                </tr>
+                </tbody>
+
+            </table>
+        </div>
+    </div>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
