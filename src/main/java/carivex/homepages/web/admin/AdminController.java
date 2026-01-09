@@ -7,6 +7,9 @@ import carivex.homepages.domain.inquiry.service.InquiryService;
 import carivex.homepages.domain.notice.Notice;
 import carivex.homepages.domain.notice.NoticeCategory;
 import carivex.homepages.domain.notice.service.NoticeService;
+import carivex.homepages.domain.page.PageType;
+import carivex.homepages.domain.page.StaticPage;
+import carivex.homepages.domain.page.service.StaticPageService;
 import carivex.homepages.domain.resource.ResourceCategory;
 import carivex.homepages.domain.resource.ResourcePost;
 import carivex.homepages.domain.resource.service.ResourceService;
@@ -35,6 +38,7 @@ public class AdminController {
     private final InquiryService inquiryService;
     private final BannerService bannerService;
     private final FileStorageService fileStorageService;
+    private final StaticPageService staticPageService;
 
     @GetMapping("/login.html")
     public String login() {
@@ -64,6 +68,22 @@ public class AdminController {
         model.addAttribute("banners", bannerService.listAll());
         model.addAttribute("form", new BannerForm());
         return "admin/banner";
+    }
+
+    @GetMapping("/page.html")
+    public String staticPage(@RequestParam(name = "type", defaultValue = "intro") String type,
+                             Model model) {
+        PageType pageType = parsePageType(type);
+        StaticPage page = staticPageService.get(pageType);
+
+        AdminStaticPageForm form = new AdminStaticPageForm();
+        form.setType(type);
+        form.setTitle(page.getTitle());
+        form.setContent(page.getContent());
+
+        model.addAttribute("form", form);
+        model.addAttribute("pageLabel", pageType.getLabel());
+        return "admin/page";
     }
 
     @GetMapping("/view_notice.html")
@@ -237,5 +257,27 @@ public class AdminController {
             );
         }
         return "redirect:/admin/banner.html";
+    }
+
+    @PostMapping("/page/save")
+    public String savePage(@Valid @ModelAttribute("form") AdminStaticPageForm form,
+                           BindingResult bindingResult,
+                           RedirectAttributes ra) {
+        if (bindingResult.hasErrors()) {
+            ra.addFlashAttribute("error", "필수 입력값을 확인해 주세요.");
+            return "redirect:/admin/page.html?type=" + form.getType();
+        }
+
+        PageType pageType = parsePageType(form.getType());
+        staticPageService.upsert(pageType, form.getTitle(), form.getContent());
+        ra.addFlashAttribute("success", "저장되었습니다.");
+        return "redirect:/admin/page.html?type=" + form.getType();
+    }
+
+    private PageType parsePageType(String type) {
+        if ("business".equalsIgnoreCase(type)) {
+            return PageType.BUSINESS;
+        }
+        return PageType.INTRO;
     }
 }
