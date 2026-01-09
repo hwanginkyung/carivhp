@@ -1,9 +1,9 @@
 <!DOCTYPE html>
-<html lang="ko" xmlns:th="http://www.thymeleaf.org">
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>한국중고자동차수출조합</title>
+    <title>Korea Used Car Export Association</title>
     <link rel="stylesheet" href="style.css">
     <link rel="stylesheet" as="style" crossorigin href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.css" />
 </head>
@@ -12,59 +12,59 @@
     <header class="header">
     <div class="container header-inner">
         <h1 class="logo">
-            <a href="/">
-                <img src='./img/logo.png' alt="한국중고자동차수출조합">
+            <a href="/en/index.html">
+                <img src='./img/logo.png' alt="Korea Used Car Export Association">
             </a>
           </h1>
 
         <nav class="gnb">
             <ul class="main-menu">
                 <li class="depth-1">
-                    <a href='./sub1-1.html'>조합 소개</a>
+                    <a href='/en/sub1-1.html'>About Us</a>
                     <ul class="depth-2">
-                        <li><a href='./sub1-1.html'>인사말</a></li>
-                        <li><a href='./sub1-2.html'>설립 목적 및 비전</a></li>
-                        <li><a href='./sub1-3.html'>주요 연혁</a></li>
+                        <li><a href='/en/sub1-1.html'>Greeting</a></li>
+                        <li><a href='/en/sub1-2.html'>Mission & Vision</a></li>
+                        <li><a href='/en/sub1-3.html'>History</a></li>
                     </ul>
                 </li>
 
                 <li class="depth-1">
-                    <a href='./sub2-1.html'>사업 안내</a>
+                    <a href='/en/sub2-1.html'>Business</a>
                     <ul class="depth-2">
-                        <li><a href='./sub2-1.html'>주요 업무</a></li>
-                        <li><a href='./sub2-2.html'>주요 사업</a></li>
-                        <li><a href='./sub2-3.html'>협력업체</a></li>
+                        <li><a href='/en/sub2-1.html'>Key Tasks</a></li>
+                        <li><a href='/en/sub2-2.html'>Key Projects</a></li>
+                        <li><a href='/en/sub2-3.html'>Partners</a></li>
                     </ul>
                 </li>
 
                 <li class="depth-1">
-                    <a href='./sub3.html'>자료실</a>
+                    <a href='/en/sub3.html'>Resources</a>
                     <ul class="depth-2">
-                        <li><a href='./sub3-1.html'>수출 통계</a></li>
-                        <li><a href='./sub3-2.html'>통관 기준 및 안내</a></li>
-                        <li><a href='./sub3-3.html'>법령 및 공문 모음</a></li>
-                        <li><a href='./sub3-4.html'>양식 및 서식 모음</a></li>
+                        <li><a href='/en/sub3-1.html'>Export Statistics</a></li>
+                        <li><a href='/en/sub3-2.html'>Customs Standards & Guide</a></li>
+                        <li><a href='/en/sub3-3.html'>Laws & Notices</a></li>
+                        <li><a href='/en/sub3-4.html'>Forms & Templates</a></li>
                     </ul>
                 </li>
 
                 <li class="depth-1">
-                    <a href='./sub4.html'>공지사항</a>
+                    <a href='/en/sub4.html'>Notices</a>
                     <ul class="depth-2">
-                        <li><a href='./sub4-1.html'>언론 보도</a></li>
-                        <li><a href='./sub4-2.html'>조합 공지</a></li>
+                        <li><a href='/en/sub4-1.html'>Press</a></li>
+                        <li><a href='/en/sub4-2.html'>Union Notices</a></li>
                     </ul>
                 </li>
 
                 <li class="depth-1">
-                    <a href='./sub5-1.html'>문의</a>
+                    <a href='/en/sub5-1.html'>Contact</a>
                     <ul class="depth-2">
-                        <li><a href='./sub5-1.html'>문의하기</a></li>
-                        <li><a href='./sub5-2.html'>후원하기</a></li>
-                        <li><a href='./sub5-3.html'>오시는 길</a></li>
+                        <li><a href='/en/sub5-1.html'>Inquiry</a></li>
+                        <li><a href='/en/sub5-2.html'>Sponsorship</a></li>
+                        <li><a href='/en/sub5-3.html'>Directions</a></li>
                     </ul>
                 </li>
                 <li class="depth-1">
-                    <a class="lang-switch" href="/en/sub5-1.html" aria-label="View in English">
+                    <a class="lang-switch" href="/sub5-1.html" aria-label="View in Korean">
                         <img src='./img/en.png' alt="en">
                     </a>
                 </li>
@@ -78,48 +78,48 @@
         <section class="section main-section">
             <div class="container">
                 <div class="sub-header">
-                    <h1>문의</h1>
+                    <h1>Contact</h1>
                 </div>
                 <div class="sub-container">
                     <div class="inquiry-wrapper">
                         <form class="inquiry-form" id="inquiryForm" action="/inquiry" method="post">
-                            <input type="hidden" name="lang" value="ko">
+                            <input type="hidden" name="lang" value="en">
                             <div th:if="${success}" style="margin:12px 0; padding:12px; border:1px solid #4caf50; color:#2e7d32; border-radius:8px;" th:text="${success}"></div>
                             <div th:if="${error}" style="margin:12px 0; padding:12px; border:1px solid #f44336; color:#c62828; border-radius:8px;" th:text="${error}"></div>
 
                             <div class="form-row">
                                 <div class="form-group">
-                                    <label for="uName">이름 *</label>
-                                    <input type="text" id="uName" placeholder="홍길동" name="name">
+                                    <label for="uName">Name *</label>
+                                    <input type="text" id="uName" placeholder="Jane Doe" name="name">
                                 </div>
                                 <div class="form-group">
-                                    <label for="uContact">연락처 *</label>
+                                    <label for="uContact">Contact *</label>
                                     <input type="text" id="uContact" placeholder="010-1234-5678" name="contact">
                                 </div>
                             </div>
 
                             <div class="form-group">
-                                <label for="uEmail">이메일 *</label>
+                                <label for="uEmail">Email *</label>
                                 <input type="email" id="uEmail" placeholder="example@email.com" name="email">
                             </div>
 
                             <div class="form-group">
-                                <label for="uType">문의 유형 *</label>
+                                <label for="uType">Inquiry Type *</label>
                                 <select id="uType" name="type">
-                                    <option value="" disabled selected>선택해주세요</option>
-                                    <option value="OPTION1">옵션1</option>
-                                    <option value="OPTION2">옵션2</option>
-                                    <option value="OPTION3">옵션3</option>
+                                    <option value="" disabled selected>Please select</option>
+                                    <option value="OPTION1">Option 1</option>
+                                    <option value="OPTION2">Option 2</option>
+                                    <option value="OPTION3">Option 3</option>
                                 </select>
                             </div>
 
                             <div class="form-group">
-                                <label for="uContent">문의 내용 *</label>
-                                <textarea id="uContent" placeholder="문의하실 내용을 자세히 작성해 주세요" name="content"></textarea>
+                                <label for="uContent">Message *</label>
+                                <textarea id="uContent" placeholder="Please describe your inquiry in detail." name="content"></textarea>
                             </div>
 
                             <div class="btn-group">
-                                <button type="submit" class="btn-submit"><p>문의하기</p></button>
+                                <button type="submit" class="btn-submit"><p>Inquiry</p></button>
                             </div>
                         </form>
                     </div>
@@ -129,15 +129,14 @@
     </main>
     <footer class="footer">
         <div class="footer-info">
-            <h1>사단법인 한국중고자동차수출조합</h1>
+            <h1>Korea Used Car Export Association</h1>
               <p>
                 TEL: 032-891-7070 &nbsp;|&nbsp; FAX: 032-891-7073<br>
                 © kucea.co.kr All Right Reserved.
               </p>
         </div>
     </footer>
-        <script src="/js/lang-toggle.js"></script>
-</body>
+    </body>
 </html>
 
 <script>
@@ -149,10 +148,10 @@
         const type = document.getElementById('uType').value;
         const content = document.getElementById('uContent').value;
 
-        if(name === "") { e.preventDefault(); alert("이름을 입력해주세요."); return; }
-        if(contact === "") { e.preventDefault(); alert("연락처를 입력해주세요."); return; }
-        if(email === "") { e.preventDefault(); alert("이메일을 입력해주세요."); return; }
-        if(type === "" || type === null) { e.preventDefault(); alert("문의 유형을 선택해주세요."); return; }
-        if(content === "") { e.preventDefault(); alert("문의 내용을 입력해주세요."); return; }
+        if(name === "") { e.preventDefault(); alert("Please enter your name."); return; }
+        if(contact === "") { e.preventDefault(); alert("Please enter your contact."); return; }
+        if(email === "") { e.preventDefault(); alert("Please enter your email."); return; }
+        if(type === "" || type === null) { e.preventDefault(); alert("Please select an inquiry type."); return; }
+        if(content === "") { e.preventDefault(); alert("Please enter your message."); return; }
     });
 </script>

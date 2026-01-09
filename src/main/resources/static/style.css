@@ -15,19 +15,6 @@ body {
     cursor: pointer;
 }
 
-#google_translate_element {
-    display: none;
-}
-
-.goog-te-banner-frame.skiptranslate,
-body > .skiptranslate {
-    display: none !important;
-}
-
-body {
-    top: 0 !important;
-}
-
 a { text-decoration: none; color: inherit; }
 li { list-style: none; }
 

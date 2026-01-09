@@ -1,33 +1,31 @@
 <!DOCTYPE html>
-<html lang="ko" xmlns:th="http://www.thymeleaf.org">
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <link rel="stylesheet" href="/style.css" />
-  <title th:text="${resource.title}">자료 상세</title>
+  <title th:text="${resource.title}">Resource Detail</title>
 </head>
 <body>
   <div style="max-width: 980px; margin: 40px auto; padding: 0 16px;">
-    <a href="/sub3.html" style="display:inline-block; margin-bottom: 16px;">← 목록으로</a>
-    <a th:href="@{/en/view_resource_public.html(id=${resource.id})}" style="float:right;">View in English</a>
-    <h1 th:text="${resource.title}">제목</h1>
+    <a href="/en/sub3.html" style="display:inline-block; margin-bottom: 16px;">← Back to list</a>
+    <a th:href="@{/view_resource_public.html(id=${resource.id})}" style="float:right;">View in Korean</a>
+    <h1 th:text="${resource.title}">Title</h1>
     <div style="opacity:0.7; margin: 8px 0 24px;">
-      <span th:text="${resource.category.label}">카테고리</span>
+      <span th:text="${resource.category.label}">Category</span>
       <span> · </span>
       <span th:text="${#temporals.format(resource.createdAt, 'yyyy-MM-dd HH:mm')}">2026-01-01</span>
     </div>
 
     <div style="white-space: pre-wrap; line-height: 1.7;" th:text="${resource.content}">
-      내용
+      Content
     </div>
 
     <div th:if="${resource.fileStoredName != null}" style="margin-top: 24px;">
-      <div style="font-weight: 600; margin-bottom: 8px;">첨부파일</div>
+      <div style="font-weight: 600; margin-bottom: 8px;">Attachment</div>
       <a th:href="@{/files/{stored}(stored=${resource.fileStoredName}, name=${resource.fileOriginalName})}"
          th:text="${resource.fileOriginalName}">download</a>
     </div>
   </div>
-  <div id="google_translate_element" aria-hidden="true"></div>
-  <script src="/js/lang-toggle.js"></script>
 </body>
 </html>
