@@ -9,6 +9,7 @@ import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 @Controller
@@ -20,8 +21,13 @@ public class InquiryController {
     @PostMapping("/inquiry")
     public String submit(@Valid @ModelAttribute("form") InquiryForm form,
                          BindingResult bindingResult,
+                         @RequestParam(name = "lang", defaultValue = "ko") String lang,
                          RedirectAttributes ra) {
         if (bindingResult.hasErrors()) {
+            if ("en".equalsIgnoreCase(lang)) {
+                ra.addFlashAttribute("error", "Please review the required fields.");
+                return "redirect:/en/sub5-1.html";
+            }
             ra.addFlashAttribute("error", "필수 항목을 확인해 주세요.");
             return "redirect:/sub5-1.html";
         }
@@ -34,6 +40,10 @@ public class InquiryController {
                 form.getContent()
         );
 
+        if ("en".equalsIgnoreCase(lang)) {
+            ra.addFlashAttribute("success", "Your inquiry has been submitted. Thank you!");
+            return "redirect:/en/sub5-1.html";
+        }
         ra.addFlashAttribute("success", "문의가 접수되었습니다. 감사합니다!");
         return "redirect:/sub5-1.html";
     }
