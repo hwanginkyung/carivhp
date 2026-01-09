@@ -14,14 +14,14 @@
 <body>
     <div class="sidebar">
         <div style="font-size: 20px; font-weight: bold; padding: 20px; background: #212529; text-align: center;">관리자 페이지</div>
-        <a href="./write.html">조합 소개 수정</a>
-        <a href="./write.html">사업 안내 수정</a>
-        <a href="./banner.html">배너 관리</a>
-        <a href="./notice.html">공지사항 관리</a>
-        <a href="./resource.html">자료실 관리</a>
-        <a href="./inquiry.html" class="active">문의 관리</a> 
-        <a href="/" target='../index.html' class="mt-5">홈페이지 바로가기</a>
-        <a href="/admin/logout" class="text-danger">로그아웃</a>
+        <a th:href="@{/admin/write.html(type='notice')}">조합 소개 수정</a>
+        <a th:href="@{/admin/write.html(type='notice')}">사업 안내 수정</a>
+        <a th:href="@{/admin/banner.html}">배너 관리</a>
+        <a th:href="@{/admin/notice.html}">공지사항 관리</a>
+        <a th:href="@{/admin/resource.html}">자료실 관리</a>
+        <a th:href="@{/admin/inquiry.html}" class="active">문의 관리</a>
+        <a th:href="@{/}" class="mt-5">홈페이지 바로가기</a>
+        <a th:href="@{/admin/logout}" class="text-danger">로그아웃</a>
     </div>
 
     <div class="content">
