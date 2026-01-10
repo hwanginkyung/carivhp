@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Korea Used Car Export Association</title>
+    <link rel="stylesheet" href="/style.css">
+    <link rel="stylesheet" as="style" crossorigin href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.css" />
+</head>
+<body>
+
+    <header class="header">
+    <div class="container header-inner">
+        <h1 class="logo">
+            <a href="/en/index.html">
+                <img src='/img/logo.png' alt="Korea Used Car Export Association">
+            </a>
+          </h1>
+
+        <nav class="gnb">
+            <ul class="main-menu">
+                <li class="depth-1">
+                    <a href='/en/sub1-1.html'>About Us</a>
+                    <ul class="depth-2">
+                        <li><a href='/en/sub1-1.html'>Greeting</a></li>
+                        <li><a href='/en/sub1-2.html'>Mission & Vision</a></li>
+                        <li><a href='/en/sub1-3.html'>History</a></li>
+                    </ul>
+                </li>
+
+                <li class="depth-1">
+                    <a href='/en/sub2-1.html'>Business</a>
+                    <ul class="depth-2">
+                        <li><a href='/en/sub2-1.html'>Key Tasks</a></li>
+                        <li><a href='/en/sub2-2.html'>Key Projects</a></li>
+                        <li><a href='/en/sub2-3.html'>Partners</a></li>
+                    </ul>
+                </li>
+
+                <li class="depth-1">
+                    <a href='/en/sub3.html'>Resources</a>
+                    <ul class="depth-2">
+                        <li><a href='/en/sub3-1.html'>Export Statistics</a></li>
+                        <li><a href='/en/sub3-2.html'>Customs Standards & Guide</a></li>
+                        <li><a href='/en/sub3-3.html'>Laws & Notices</a></li>
+                        <li><a href='/en/sub3-4.html'>Forms & Templates</a></li>
+                    </ul>
+                </li>
+
+                <li class="depth-1">
+                    <a href='/en/sub4.html'>Notices</a>
+                    <ul class="depth-2">
+                        <li><a href='/en/sub4-1.html'>Press</a></li>
+                        <li><a href='/en/sub4-2.html'>Union Notices</a></li>
+                    </ul>
+                </li>
+
+                <li class="depth-1">
+                    <a href='/en/sub5-1.html'>Contact</a>
+                    <ul class="depth-2">
+                        <li><a href='/en/sub5-1.html'>Inquiry</a></li>
+                        <li><a href='/en/sub5-2.html'>Sponsorship</a></li>
+                        <li><a href='/en/sub5-3.html'>Directions</a></li>
+                    </ul>
+                </li>
+                <li class="depth-1">
+                    <a class="lang-switch" href="/sub3.html" aria-label="View in Korean">
+                        <img src='/img/en.png' alt="en">
+                    </a>
+                </li>
+            </ul>
+        </nav>
+    </div>
+    
+            </header>
+    <main class="main-content">
+
+        <section class="section main-section">
+            <div class="container">
+                <div class="sub-header">
+                    <h1>Resources</h1>
+                </div>
+                <div class="sub-container">
+                    <div class="board-tabs">
+                        <a href="/en/sub3.html" class="tab-item active">All</a>
+                        <a href="/en/sub3-1.html" class="tab-item">Export Statistics</a>
+                        <a href="/en/sub3-2.html" class="tab-item">Customs Standards & Guide</a>
+                        <a href="/en/sub3-3.html" class="tab-item">Laws & Notices</a>
+                        <a href="/en/sub3-4.html" class="tab-item">Forms & Templates</a>
+                    </div>
+
+                    <div class="board-list-wrap">
+                        <div class="board-header">
+                            <span class="col-cate">Category</span>
+                            <span class="col-title">Title</span>
+                            <span class="col-date">Date</span>
+                        </div>
+                        <div class="board-item-list">
+                            <div class="board-item" th:each="r : ${resources}">
+                                <div class="col-cate"><span class="cate-badge" th:text="${r.category.label}">Export Statistics</span></div>
+                                <div class="col-title">
+                                    <a th:href="@{/en/view_resource_public.html(id=${r.id})}" th:text="${r.title}">Title</a>
+                                </div>
+                                <div class="col-date" th:text="${#temporals.format(r.createdAt, 'yyyy-MM-dd')}">2025-01-02</div>
+                            </div>
+
+                            <div class="board-item" th:if="${#lists.isEmpty(resources)}" style="justify-content:center; text-align:center;">
+                                <div class="col-title" style="width:100%; text-align:center;">No resources available.</div>
+                            </div>
+
+</div>
+                    </div>
+
+                    <div class="pagination">
+                        <a href="#" class="page-btn arrow">‹</a>
+                        <a href="#" class="page-btn active">1</a>
+                        <a href="#" class="page-btn">2</a>
+                        <a href="#" class="page-btn">3</a>
+                        <a href="#" class="page-btn">4</a>
+                        <a href="#" class="page-btn">5</a>
+                        <a href="#" class="page-btn arrow">›</a>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+    <footer class="footer">
+        <div class="footer-info">
+            <h1>Korea Used Car Export Association</h1>
+              <p>
+                TEL: 032-891-7070 &nbsp;|&nbsp; FAX: 032-891-7073 &nbsp;|&nbsp; Email: kucea7070@naver.com<br>
+                © kucea.co.kr All Right Reserved.
+              </p>
+        </div>
+    </footer>
+    </body>
+</html>
