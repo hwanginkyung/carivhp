@@ -64,15 +64,15 @@
                     </ul>
                 </li>
                 <li class="depth-1">
-                    <div class="lang-switch">
+                    <a class="lang-switch" href="/en/sub5-1.html" aria-label="View in English">
                         <img src='./img/en.png' alt="en">
-                    </div>
+                    </a>
                 </li>
             </ul>
         </nav>
     </div>
     
-    </header>
+            </header>
     <main class="main-content">
 
         <section class="section main-section">
@@ -83,6 +83,7 @@
                 <div class="sub-container">
                     <div class="inquiry-wrapper">
                         <form class="inquiry-form" id="inquiryForm" action="/inquiry" method="post">
+                            <input type="hidden" name="lang" value="ko">
                             <div th:if="${success}" style="margin:12px 0; padding:12px; border:1px solid #4caf50; color:#2e7d32; border-radius:8px;" th:text="${success}"></div>
                             <div th:if="${error}" style="margin:12px 0; padding:12px; border:1px solid #f44336; color:#c62828; border-radius:8px;" th:text="${error}"></div>
 

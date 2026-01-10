@@ -14,14 +14,14 @@
 <body>
     <div class="sidebar">
         <div style="font-size: 20px; font-weight: bold; padding: 20px; background: #212529; text-align: center;">관리자 페이지</div>
-        <a href="./write.html">조합 소개 수정</a>
-        <a href="./write.html">사업 안내 수정</a>
-        <a href="./banner.html">배너 관리</a>
-        <a href="./notice.html">공지사항 관리</a>
-        <a href="./resource.html">자료실 관리</a>
-        <a href="./inquiry.html" class="active">문의 관리</a> 
-        <a href="/" target='../index.html' class="mt-5">홈페이지 바로가기</a>
-        <a href="/admin/logout" class="text-danger">로그아웃</a>
+        <a th:href="@{/admin/page.html(type='intro')}">조합 소개 수정</a>
+        <a th:href="@{/admin/page.html(type='business')}">사업 안내 수정</a>
+        
+        <a th:href="@{/admin/notice.html}">공지사항 관리</a>
+        <a th:href="@{/admin/resource.html}">자료실 관리</a>
+        <a th:href="@{/admin/inquiry.html}" class="active">문의 관리</a>
+        <a th:href="@{/}" class="mt-5">홈페이지 바로가기</a>
+        <a th:href="@{/admin/logout}" class="text-danger">로그아웃</a>
     </div>
 
     <div class="content">
@@ -35,12 +35,13 @@
                     <thead class="table-light">
                         <tr>
                             <th style="width: 60px;">No</th>
-                            <th style="width: 120px;">유형</th>
-                            <th>제목</th>
-                            <th style="width: 150px;">작성자</th>
-                            <th style="width: 150px;">등록일</th>
+                            <th style="width: 120px;">이름</th>
+                            <th style="width: 160px;">연락처</th>
+                            <th style="width: 220px;">이메일</th>
+                            <th style="width: 140px;">문의 유형</th>
+                            <th style="width: 140px;">등록일</th>
                             <th style="width: 100px;">상태</th>
-                            <th style="width: 100px;">관리</th>
+                            <th style="width: 140px;">관리</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -50,9 +51,11 @@
                             <td th:text="${i.contact}">010-0000-0000</td>
                             <td th:text="${i.email}">example@email.com</td>
                             <td th:text="${i.type.label}">옵션1</td>
-                            <td th:text="${i.status.label}">신규</td>
                             <td th:text="${#temporals.format(i.createdAt, 'yyyy-MM-dd')}">2025-01-02</td>
+                            <td th:text="${i.status.label}">신규</td>
                             <td>
+                                <a th:href="@{/admin/view_inquiry.html(id=${i.id})}"
+                                   class="btn btn-sm btn-outline-primary">보기</a>
                                 <form th:action="@{/admin/delete}" method="post" style="display:inline;">
                                     <input type="hidden" name="type" value="inquiry">
                                     <input type="hidden" name="id" th:value="${i.id}">
