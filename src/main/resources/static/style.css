@@ -1182,6 +1182,7 @@ li { list-style: none; }
 .footer-info {
     border-top: 1px solid #EBEBEB;
     padding-top: 40px;
+    padding-bottom: 40px;
     width: 100%;
     max-width: 1152px; 
     margin: 0 auto; 
