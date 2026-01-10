@@ -22,6 +22,12 @@ public class InquiryService {
         return inquiryRepository.findAllLatest();
     }
 
+    @Transactional(readOnly = true)
+    public Inquiry get(Long id) {
+        return inquiryRepository.findById(id)
+                .orElseThrow(() -> new IllegalArgumentException("Inquiry not found: " + id));
+    }
+
     @Transactional
     public Inquiry create(String name, String contact, String email, InquiryType type, String content) {
         return inquiryRepository.save(new Inquiry(name, contact, email, type, content));

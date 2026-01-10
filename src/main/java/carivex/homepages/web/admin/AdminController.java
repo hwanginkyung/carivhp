@@ -98,6 +98,12 @@ public class AdminController {
         return "admin/view_resource";
     }
 
+    @GetMapping("/view_inquiry.html")
+    public String inquiryView(@RequestParam("id") Long id, Model model) {
+        model.addAttribute("inquiry", inquiryService.get(id));
+        return "admin/view_inquiry";
+    }
+
     @GetMapping("/write.html")
     public String write(@RequestParam(name = "type", defaultValue = "notice") String type,
                         @RequestParam(name = "id", required = false) Long id,
