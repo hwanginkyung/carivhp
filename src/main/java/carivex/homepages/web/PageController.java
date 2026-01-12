@@ -52,54 +52,6 @@ public class PageController {
     @GetMapping("/en/sub2-3.html")
     public String sub23En() { return "sub2-3_en"; }
 
-    @GetMapping("/sub3.html")
-    public String sub3() { return "sub3"; }
-
-    @GetMapping("/en/sub3.html")
-    public String sub3En() { return "sub3_en"; }
-
-    @GetMapping("/sub3-1.html")
-    public String sub31() { return "sub3-1"; }
-
-    @GetMapping("/en/sub3-1.html")
-    public String sub31En() { return "sub3-1_en"; }
-
-    @GetMapping("/sub3-2.html")
-    public String sub32() { return "sub3-2"; }
-
-    @GetMapping("/en/sub3-2.html")
-    public String sub32En() { return "sub3-2_en"; }
-
-    @GetMapping("/sub3-3.html")
-    public String sub33() { return "sub3-3"; }
-
-    @GetMapping("/en/sub3-3.html")
-    public String sub33En() { return "sub3-3_en"; }
-
-    @GetMapping("/sub3-4.html")
-    public String sub34() { return "sub3-4"; }
-
-    @GetMapping("/en/sub3-4.html")
-    public String sub34En() { return "sub3-4_en"; }
-
-    @GetMapping("/sub4.html")
-    public String sub4() { return "sub4"; }
-
-    @GetMapping("/en/sub4.html")
-    public String sub4En() { return "sub4_en"; }
-
-    @GetMapping("/sub4-1.html")
-    public String sub41() { return "sub4-1"; }
-
-    @GetMapping("/en/sub4-1.html")
-    public String sub41En() { return "sub4-1_en"; }
-
-    @GetMapping("/sub4-2.html")
-    public String sub42() { return "sub4-2"; }
-
-    @GetMapping("/en/sub4-2.html")
-    public String sub42En() { return "sub4-2_en"; }
-
     @GetMapping("/sub5-1.html")
     public String sub51() { return "sub5-1"; }
 
