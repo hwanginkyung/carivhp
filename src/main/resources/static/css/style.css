@@ -85,10 +85,10 @@ img {
     transition: color 0.3s;
     cursor: pointer;
     font-weight: 500;
-    font-style: Medium;
+    font-style: normal;
     font-size: 20px;
     line-height: 32px;
-    letter-spacing: 0%;
+    letter-spacing: 0;
 }
 
 .depth-1:last-child {
@@ -125,10 +125,10 @@ img {
     color: #fff; 
     font-weight: 500;
     white-space: nowrap; 
-    font-style: Medium;
+    font-style: normal;
     font-size: 16px;
     line-height: 28px;
-    letter-spacing: 0%;
+    letter-spacing: 0;
     text-align: center;
 }
 
@@ -209,20 +209,20 @@ img {
     margin-bottom: 10px;
     font-family: Pretendard;
     line-height: 64px;
-    letter-spacing: 0%;
-    font-style: Bold;
+    letter-spacing: 0;
+    font-style: normal;
     text-align: center;
     vertical-align: middle;
 }
 
 .visual-text h3 {
     color:#fff;
-    letter-spacing: 0%;
+    letter-spacing: 0;
     font-weight: 700;
-    font-style: Bold;
+    font-style: normal;
     font-size: 28px;
     line-height: 44px;
-    letter-spacing: 0%;
+    letter-spacing: 0;
     text-align: center;
     vertical-align: middle;
     opacity:0.9;
@@ -233,10 +233,10 @@ img {
     color:#fff;
     font-family: Pretendard;
     font-weight: 400;
-    font-style: Regular;
+    font-style: normal;
     font-size: 20px;
     line-height: 32px;
-    letter-spacing: 0%;
+    letter-spacing: 0;
     text-align: center;
     vertical-align: middle;
 }
@@ -253,10 +253,10 @@ img {
     color:#32383F;
     font-family: Pretendard;
     font-weight: 700;
-    font-style: Bold;
+    font-style: normal;
     font-size: 40px;
     line-height: 56px;
-    letter-spacing: 0%;
+    letter-spacing: 0;
     text-align: center;
     display:block;
     margin-bottom: 16px;
@@ -267,7 +267,7 @@ img {
     font-size: 16px;
     font-weight: 500;
     line-height: 24px;
-    letter-spacing: 0%;
+    letter-spacing: 0;
     text-align: center;
 }
 
@@ -279,12 +279,12 @@ img {
 .sub-header h1 {
     display:block;
     font-weight: 700;
-    height: 56;
+    height: 56px;
     opacity: 1;
-    font-style: Bold;
+    font-style: normal;
     font-size: 36px;
     line-height: 52px;
-    letter-spacing: 0%;
+    letter-spacing: 0;
 }
 
 .sub-header2 {
@@ -295,12 +295,12 @@ img {
 .sub-header2 h1 {
     display:block;
     font-weight: 700;
-    height: 56;
+    height: 56px;
     opacity: 1;
-    font-style: Bold;
+    font-style: normal;
     font-size: 36px;
     line-height: 52px;
-    letter-spacing: 0%;
+    letter-spacing: 0;
 }
 
 
@@ -339,20 +339,20 @@ img {
 .sub-container p{
   color:#32383F;
   font-weight: 500;
-  font-style: Medium;
+  font-style: normal;
   font-size: 20px;
   line-height: 32px;
-  letter-spacing: 0%;
+  letter-spacing: 0;
   vertical-align: middle;
 }
 
 .sub-container h4{
   color:#1B242C;
   font-weight: 500;
-  font-style: Medium;
+  font-style: normal;
   font-size: 20px;
   line-height: 32px;
-  letter-spacing: 0%;
+  letter-spacing: 0;
   vertical-align: middle;
 }
 
@@ -365,10 +365,10 @@ img {
 .sub-container2 p{
   color:#32383F;
   font-weight: 500;
-  font-style: Medium;
+  font-style: normal;
   font-size: 20px;
   line-height: 32px;
-  letter-spacing: 0%;
+  letter-spacing: 0;
   vertical-align: middle;
 }
 
@@ -392,20 +392,20 @@ img {
 .sub-item h3{
   color:#1B242C;
   font-weight: 700;
-  font-style: Bold;
+  font-style: normal;
   font-size: 24px;
   line-height: 36px;
-  letter-spacing: 0%;
+  letter-spacing: 0;
   margin-bottom:12px;
 }
 
 .sub-list li{
   color:#5B6064;
   font-weight: 500;
-  font-style: Medium;
+  font-style: normal;
   font-size: 20px;
   line-height: 32px;
-  letter-spacing: 0%;
+  letter-spacing: 0;
   vertical-align: middle;
 }
 
@@ -422,39 +422,44 @@ img {
   gap:4px;
 }
 
-.sub-list2 span{
+.sub-list2-item{
   display:flex;
   flex-direction: row;
   gap:12px;
+  align-items: flex-start;
 }
 
-.sub-list2 span li{
+.sub-list2 dt{
   color:#1B242C;
   font-weight: 500;
-  font-style: Medium;
+  font-style: normal;
   font-size: 20px;
   line-height: 32px;
-  letter-spacing: 0%;
+  letter-spacing: 0;
   vertical-align: middle;
   width:120px;
+  margin: 0;
+  position: relative;
+  padding-left: 16px;
 }
 
-.sub-list2 span li::before {
+.sub-list2 dt::before {
     content: '•';
-    position: relative;
-    margin:8px;
-    align-items: center;
+    position: absolute;
+    left: 0;
+    top: 0;
     color: #1B242C;
 }
 
-.sub-list2 span p{
+.sub-list2 dd{
   color:#5B6064;
   font-weight: 500;
-  font-style: Medium;
+  font-style: normal;
   font-size: 20px;
   line-height: 32px;
-  letter-spacing: 0%;
+  letter-spacing: 0;
   vertical-align: middle;
+  margin: 0;
 }
 
 .sub-img{
@@ -470,7 +475,7 @@ img {
 }
 
 .sub-card-container{
-  width:'100%';
+  width: 100%;
   display: flex;           
   flex-direction: column;   
   gap: 12px;
@@ -484,10 +489,10 @@ img {
 
 .sub-card1 p{
   font-weight: 700;
-  font-style: Bold;
+  font-style: normal;
   font-size: 20px;
   line-height: 32px;
-  letter-spacing: 0%;
+  letter-spacing: 0;
 }
 
 .sub-card-container2{
@@ -516,31 +521,30 @@ img {
 .sub-card2 h3{
   color:#1B242C;
   font-weight: 700;
-  font-style: Bold;
+  font-style: normal;
   font-size: 24px;
   line-height: 36px;
-  letter-spacing: 0%;
+  letter-spacing: 0;
   margin-bottom:16px;
 }
 
 .sub-card2 p{
   color:#5B6064;
   font-weight: 500;
-  font-style: Medium;
+  font-style: normal;
   font-size: 20px;
   line-height: 32px;
-  letter-spacing: 0%;
+  letter-spacing: 0;
   vertical-align: middle;
 }
 
 .sub-card-container3 p{
   color:#5B6064;
-  align-items: left;
   font-weight: 400;
-  font-style: Regular;
+  font-style: normal;
   font-size: 16px;
   line-height: 24px;
-  letter-spacing: 0%;
+  letter-spacing: 0;
   text-align: right;
 }
 
@@ -583,10 +587,10 @@ img {
     color: #000;
     font-family: Pretendard;
     font-weight: 500;
-    font-style: Medium;
+    font-style: normal;
     font-size: 20px;
     line-height: 32px;
-    letter-spacing: 0%;
+    letter-spacing: 0;
 }
 
 .card-item p {
@@ -595,7 +599,7 @@ img {
     font-weight: 400;
     color: #5B6064;
     line-height: 24px;
-    letter-spacing: 0%;
+    letter-spacing: 0;
 }
 
 .time-item{ 
@@ -618,7 +622,7 @@ img {
 }
 
 .bullet{
-  background:'transparent';
+  background: transparent;
   width: 16px;
   height: 16px;
   opacity: 1;
@@ -631,10 +635,10 @@ img {
 .year h2{
   color:#263238;
   font-weight: 700;
-  font-style: Bold;
+  font-style: normal;
   font-size: 24px;
   line-height: 36px;
-  letter-spacing: 0%;
+  letter-spacing: 0;
   vertical-align: middle;
 }
 
@@ -647,19 +651,19 @@ img {
 .time-info h4{
   color:#1B242C;
   font-weight: 500;
-  font-style: Medium;
+  font-style: normal;
   font-size: 20px;
   line-height: 32px;
-  letter-spacing: 0%;
+  letter-spacing: 0;
 }
 
 .time-info p{
   color:#5B6064;
   font-weight: 400;
-  font-style: Regular;
+  font-style: normal;
   font-size: 20px;
   line-height: 32px;
-  letter-spacing: 0%;
+  letter-spacing: 0;
   vertical-align: middle;
 }
 
@@ -743,10 +747,10 @@ img {
 
 .card-item-gray h3{
   font-weight: 500;
-  font-style: Medium;
+  font-style: normal;
   font-size: 24px;
   line-height: 36px;
-  letter-spacing: 0%;
+  letter-spacing: 0;
   color:#000000;
 }
 
@@ -756,7 +760,7 @@ img {
   font-size: 16px;
   line-height: 24px;
   color: #5B6064;
-  letter-spacing: 0%;
+  letter-spacing: 0;
 }
 
 .check-list{
@@ -770,7 +774,7 @@ img {
     font-weight: 400;
     font-size: 16px;
     line-height: 24px;
-    letter-spacing: 0%;
+    letter-spacing: 0;
 }
 
 .partner-list{
@@ -809,10 +813,10 @@ img {
 .partner-info p{
   color:#5B6064;
   font-weight: 500;
-  font-style: Medium;
+  font-style: normal;
   font-size: 20px;
   line-height: 32px;
-  letter-spacing: 0%;
+  letter-spacing: 0;
   vertical-align: middle;
 }
 
@@ -827,19 +831,19 @@ img {
 .partner-title h3{
   color:#1B242C;
   font-weight: 700;
-  font-style: Bold;
+  font-style: normal;
   font-size: 24px;
   line-height: 36px;
-  letter-spacing: 0%;
+  letter-spacing: 0;
 }
 
 .partner-title p{
   color:#B2B4B6;
   font-weight: 500;
-  font-style: Medium;
+  font-style: normal;
   font-size: 16px;
   line-height: 24px;
-  letter-spacing: 0%;
+  letter-spacing: 0;
   vertical-align: middle;
 }
 
@@ -859,7 +863,7 @@ img {
     transition: background-color 0.3s;
     font-family: Inter;
     font-weight: 450;
-    font-style: Medium;
+    font-style: normal;
     font-size: 16px;
     line-height: 28px;
     letter-spacing: 0.2px;
@@ -892,10 +896,10 @@ img {
     color: #1B242C;
     font-family: Pretendard;
     font-weight: 500;
-    font-style: Medium;
+    font-style: normal;
     font-size: 20px;
     line-height: 32px;
-    letter-spacing: 0%;
+    letter-spacing: 0;
 }
 
 /* Select 박스*/
@@ -903,11 +907,11 @@ img {
     -webkit-appearance: none;
     -moz-appearance: none; 
     appearance: none;
-    background-image: url('/main/resources/static/img//indicator.png'); 
+    background-image: url('/img/indicator.png'); 
     background-repeat: no-repeat;
     background-position: right 16px center; 
     background-size: 20px 20px;  
-    background-color: 'transparent';
+    background-color: transparent;
 }
 
 /* 입력창 공통 스타일  */
@@ -923,10 +927,10 @@ img {
     font-family: 'Pretendard';
     transition: border-color 0.2s;
     font-weight: 400;
-    font-style: Regular;
+    font-style: normal;
     font-size: 20px;
     line-height: 32px;
-    letter-spacing: 0%;
+    letter-spacing: 0;
 }
 
 .form-group input::placeholder,
@@ -991,7 +995,7 @@ img {
   color:#FFFFFF;
   font-family: 'Inter';
   font-weight: 450;
-  font-style: Medium;
+  font-style: normal;
   font-size: 16px;
   line-height: 28px;
   letter-spacing: 0.2px;
@@ -1015,10 +1019,10 @@ img {
     text-align: center;
     border-bottom: 2px solid transparent;
     transition: all 0.3s;
-    font-style: Medium;
+    font-style: normal;
     font-size: 20px;
     line-height: 32px;
-    letter-spacing: 0%;
+    letter-spacing: 0;
 }
 
 .tab-item.active{
@@ -1129,19 +1133,19 @@ img {
     background: #fff;
     transition: all 0.2s;
     font-weight: 400;
-    font-style: Regular;
+    font-style: normal;
     font-size: 16px;
     line-height: 24px;
-    letter-spacing: 0%;
+    letter-spacing: 0;
     text-align: center;
 }
 
 .page-btn arrow{
     font-weight: 400;
-    font-style: Regular;
+    font-style: normal;
     font-size: 24px;
     line-height: 36px;
-    letter-spacing: 0%;
+    letter-spacing: 0;
     text-align: center;
     color:#1B242C;
 }
@@ -1163,6 +1167,7 @@ img {
 .footer-info {
     border-top: 1px solid #EBEBEB;
     padding-top: 40px;
+    padding-bottom: 40px;
     width: 100%;
     max-width: 1152px; 
     margin: 0 auto; 
@@ -1343,6 +1348,7 @@ img {
 
     .footer-info {
         padding-top: 40px;
+        padding-bottom: 32px;
         padding-left: 12px;
     }
 
@@ -1369,6 +1375,30 @@ img {
 
 /* ====================768px 이하==================== */
 @media screen and (max-width: 768px) {
+    .logo img {
+        width: 180px;
+        height: auto;
+    }
+
+    .depth-1 > a {
+        font-size: 16px;
+    }
+
+    .depth-2 li a {
+        font-size: 14px;
+    }
+
+    .form-group label {
+        font-size: 16px;
+        line-height: 24px;
+    }
+
+    .form-group input,
+    .form-group select,
+    .form-group textarea {
+        font-size: 16px;
+        line-height: 24px;
+    }
     
     .card-list-2by2 {
         grid-template-columns: 1fr;
