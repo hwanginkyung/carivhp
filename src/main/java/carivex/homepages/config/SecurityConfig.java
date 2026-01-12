@@ -46,7 +46,7 @@ public class SecurityConfig {
                         "/", "/index.html",
                         "/en/**",
                         "/sub*.html",
-                        "/style.css",
+                        "/main/resources/static/css/style.css",
                         "/css/**", "/js/**", "/img/**",
                         "/files/**",
                         "/inquiry"

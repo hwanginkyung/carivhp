@@ -11,7 +11,7 @@ public class PageController {
         return "index";
     }
 
-    @GetMapping({"/en", "/en/index.html"})
+    @GetMapping({"/en", "/index_en.html"})
     public String indexEn() {
         return "index_en";
     }

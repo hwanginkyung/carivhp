@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>한국중고자동차수출조합</title>
-    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="/main/resources/static/css/style.css">
     <link rel="stylesheet" as="style" crossorigin href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.css" />
 </head>
 <body>
@@ -12,12 +12,20 @@
     <header class="header">
     <div class="container header-inner">
         <h1 class="logo">
-            <a href="/">
-                <img src='./img/logo.png' alt="한국중고자동차수출조합">
+            <a href='./index.html'>
+                <img src='/main/resources/static/img/logo.png' alt="한국중고자동차수출조합">
             </a>
-          </h1>
+        </h1>
+
+        <button type="button" class="btn-hamburger">
+            <span></span>
+            <span></span>
+            <span></span>
+        </button>
 
         <nav class="gnb">
+            <button type="button" class="btn-close-menu">✕</button>
+
             <ul class="main-menu">
                 <li class="depth-1">
                     <a href='./sub1-1.html'>조합 소개</a>
@@ -63,21 +71,23 @@
                         <li><a href='./sub5-3.html'>오시는 길</a></li>
                     </ul>
                 </li>
+                
                 <li class="depth-1">
-                    <a class="lang-switch" href="/en/index.html" aria-label="View in English">
-                        <img src='./img/en.png' alt="en">
+                    <a class="lang-switch" href='./index_en.html' aria-label="View in English">
+                        <img src='/main/resources/static/img/en.png' alt="en">
                     </a>
                 </li>
             </ul>
         </nav>
+        
+        <div class="menu-overlay"></div>
     </div>
-    
-            </header>
+</header>
     <main class="main-content">
 
         <section class="visual-section">
             <div class="visual-bg">
-                <img src='./img/main.jpg' alt="메인 배경">
+                <img src='/main/resources/static/img/main.jpg' alt="메인 배경">
                 <div class="overlay"></div>
             </div>
             <div class="container visual-text">
@@ -98,17 +108,17 @@
 
                 <div class="card-list-3">
                     <div class="card-item white-card">
-                        <div class="icon-box"><img src='./img/main1.png' alt="💡"></div>
+                        <div class="icon-box"><img src='/main/resources/static/img/main1.png' alt="💡"></div>
                         <h3>중고차 수출을 산업으로 완성하다</h3>
                         <p>한국중고차수출조합은 중고차 수출을 단순한 물량 중심의 거래가 아닌, 신뢰·표준·지속 가능성을 갖춘 글로벌 산업으로 정착시키는 것을 비전으로 합니다.</p>
                     </div>
                     <div class="card-item white-card">
-                        <div class="icon-box"><img src='./img/main2.png' alt="📈"></div>
+                        <div class="icon-box"><img src='/main/resources/static/img/main2.png' alt="📈"></div>
                         <h3>연결하고, 표준화하고, 성장시키다</h3>
                         <p>이를 위해 조합은 국내외 시장을 연결하는 통합형 수출 플랫폼과 인프라를 구축하고, 친환경 물류체계와 고부가가치 시스템을 조성합니다.</p>
                     </div>
                     <div class="card-item white-card">
-                        <div class="icon-box"><img src='./img/main3.png' alt="🏳️"></div>
+                        <div class="icon-box"><img src='/main/resources/static/img/main3.png' alt="🏳️"></div>
                         <h3>가격을 넘어, 기준이 되다</h3>
                         <p>나아가 한국 중고차 수출 산업이 가격 경쟁력을 넘어 품질, 투명성, 운영 역량으로 인정받는 글로벌 기준이 되도록 함으로써 중심 조직이 되고자 합니다.</p>
                     </div>
@@ -178,6 +188,52 @@
               </p>
         </div>
     </footer>
-        <script src="/js/lang-toggle.js"></script>
+    <script src="/js/lang-toggle.js"></script>
+    <script>
+            const hamburgerBtn = document.querySelector('.btn-hamburger');
+            const closeBtn = document.querySelector('.btn-close-menu');
+            const gnb = document.querySelector('.gnb');
+            const overlay = document.querySelector('.menu-overlay');
+            const depth1Items = document.querySelectorAll('.depth-1');
+
+            if (hamburgerBtn) {
+                hamburgerBtn.addEventListener('click', () => {
+                    if (gnb) gnb.classList.add('active');
+                    if (overlay) overlay.classList.add('active');
+                    document.body.style.overflow = 'hidden';
+                });
+            }
+
+            const closeMenu = () => {
+                if (gnb) gnb.classList.remove('active');
+                if (overlay) overlay.classList.remove('active');
+                document.body.style.overflow = '';
+                
+                depth1Items.forEach(item => item.classList.remove('open'));
+            };
+
+            if (closeBtn) closeBtn.addEventListener('click', closeMenu);
+            if (overlay) overlay.addEventListener('click', closeMenu);
+
+            depth1Items.forEach(item => {
+                const link = item.querySelector('a'); 
+                const subMenu = item.querySelector('.depth-2'); 
+
+                if (subMenu && link) {
+                    link.addEventListener('click', (e) => {
+                        if (window.innerWidth <= 2000) {
+                            e.preventDefault(); 
+                            item.classList.toggle('open'); 
+                        }
+                    });
+                }
+            });
+
+            window.addEventListener('resize', () => {
+                if (window.innerWidth > 1024) {
+                    closeMenu();
+                }
+            });
+        </script>
 </body>
 </html>

@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>한국중고자동차수출조합</title>
-    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="/main/resources/static/css/style.css">
     <link rel="stylesheet" as="style" crossorigin href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.css" />
 </head>
 <body>
@@ -12,10 +12,17 @@
     <header class="header">
     <div class="container header-inner">
         <h1 class="logo">
-            <a href="/">
-                <img src='./img/logo.png' alt="한국중고자동차수출조합">
+            <a href='./index.html'>
+                <img src='/main/resources/static/img/logo.png' alt="한국중고자동차수출조합">
             </a>
           </h1>
+
+        <button type="button" class="btn-hamburger">
+            <span></span>
+            <span></span>
+            <span></span>
+        </button>
+
 
         <nav class="gnb">
             <ul class="main-menu">
@@ -64,12 +71,13 @@
                     </ul>
                 </li>
                 <li class="depth-1">
-                    <a class="lang-switch" href="/en/sub2-1.html" aria-label="View in English">
-                        <img src='./img/en.png' alt="en">
+                    <a class="lang-switch" href="./sub2-1_en.html" aria-label="View in English">
+                        <img src='/main/resources/static/img/en.png' alt="en">
                     </a>
                 </li>
             </ul>
         </nav>
+        <div class="menu-overlay"></div>
     </div>
     
             </header>
@@ -77,7 +85,7 @@
 
         <section class="sub-visual-section">
             <div class="visual-bg">
-                <img src='./img/sub2img.png' alt="메인 배경">
+                <img src='/main/resources/static/img/sub2img.png' alt="메인 배경">
                 <div class="overlay2"></div>
             </div>
             <div class="container visual-text">
@@ -118,7 +126,7 @@
                     </div>
                     
                     <div class="sub-img">
-                      <img src='./img/sub2-1img.png' alt="메인 배경">
+                      <img src='/main/resources/static/img/sub2-1img.png' alt="메인 배경">
                     </div>
 
                     <div class="sub-item-list">
@@ -168,5 +176,51 @@
         </div>
     </footer>
         <script src="/js/lang-toggle.js"></script>
+        <script>
+            const hamburgerBtn = document.querySelector('.btn-hamburger');
+            const closeBtn = document.querySelector('.btn-close-menu');
+            const gnb = document.querySelector('.gnb');
+            const overlay = document.querySelector('.menu-overlay');
+            const depth1Items = document.querySelectorAll('.depth-1');
+
+            if (hamburgerBtn) {
+                hamburgerBtn.addEventListener('click', () => {
+                    if (gnb) gnb.classList.add('active');
+                    if (overlay) overlay.classList.add('active');
+                    document.body.style.overflow = 'hidden';
+                });
+            }
+
+            const closeMenu = () => {
+                if (gnb) gnb.classList.remove('active');
+                if (overlay) overlay.classList.remove('active');
+                document.body.style.overflow = '';
+                
+                depth1Items.forEach(item => item.classList.remove('open'));
+            };
+
+            if (closeBtn) closeBtn.addEventListener('click', closeMenu);
+            if (overlay) overlay.addEventListener('click', closeMenu);
+
+            depth1Items.forEach(item => {
+                const link = item.querySelector('a'); 
+                const subMenu = item.querySelector('.depth-2'); 
+
+                if (subMenu && link) {
+                    link.addEventListener('click', (e) => {
+                        if (window.innerWidth <= 2000) {
+                            e.preventDefault(); 
+                            item.classList.toggle('open'); 
+                        }
+                    });
+                }
+            });
+
+            window.addEventListener('resize', () => {
+                if (window.innerWidth > 1024) {
+                    closeMenu();
+                }
+            });
+        </script>
 </body>
 </html>
