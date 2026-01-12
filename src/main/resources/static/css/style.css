@@ -1167,6 +1167,7 @@ img {
 .footer-info {
     border-top: 1px solid #EBEBEB;
     padding-top: 40px;
+    padding-bottom: 40px;
     width: 100%;
     max-width: 1152px; 
     margin: 0 auto; 
@@ -1347,6 +1348,7 @@ img {
 
     .footer-info {
         padding-top: 40px;
+        padding-bottom: 32px;
         padding-left: 12px;
     }
 
@@ -1373,6 +1375,30 @@ img {
 
 /* ====================768px 이하==================== */
 @media screen and (max-width: 768px) {
+    .logo img {
+        width: 180px;
+        height: auto;
+    }
+
+    .depth-1 > a {
+        font-size: 16px;
+    }
+
+    .depth-2 li a {
+        font-size: 14px;
+    }
+
+    .form-group label {
+        font-size: 16px;
+        line-height: 24px;
+    }
+
+    .form-group input,
+    .form-group select,
+    .form-group textarea {
+        font-size: 16px;
+        line-height: 24px;
+    }
     
     .card-list-2by2 {
         grid-template-columns: 1fr;
