@@ -18,7 +18,7 @@
           </h1>
 
         <div class="mobile-controls">
-            <a class="lang-switch-mobile" href="/en/view_resource_public.html">
+            <a class="lang-switch-mobile" th:href="@{/en/view_resource_public.html(id=${resource.id})}">
                 <img src='/img/en.png' alt="en">
             </a>
             
@@ -77,7 +77,7 @@
                     </ul>
                 </li>
                 <li class="depth-1">
-                    <a class="lang-switch" href="/en/view_resource_public.html" aria-label="View in English">
+                    <a class="lang-switch" th:href="@{/en/view_resource_public.html(id=${resource.id})}" aria-label="View in English">
                         <img src='/img/en.png' alt="en">
                     </a>
                 </li>
