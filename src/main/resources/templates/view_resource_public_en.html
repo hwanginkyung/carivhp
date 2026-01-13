@@ -18,7 +18,7 @@
           </h1>
 
         <div class="mobile-controls">
-            <a class="lang-switch-mobile" href="/sub5-3.html">
+            <a class="lang-switch-mobile" th:href="@{/view_resource_public.html(id=${resource.id})}">
                 <img src='/img/ko.png' alt="ko">
             </a>
             
@@ -77,7 +77,7 @@
                     </ul>
                 </li>
                 <li class="depth-1">
-                    <a class="lang-switch" href="/view_resource_public.html">
+                    <a class="lang-switch" th:href="@{/view_resource_public.html(id=${resource.id})}">
                         <img src='/img/ko.png' alt="ko">
                     </a>
                 </li>
@@ -91,7 +91,7 @@
         <div class="container">
             
             <div class="view-nav-area">
-                <a href="/sub3.html" class="btn-back-list">
+                <a href="/en/sub3.html" class="btn-back-list">
                     <img src="/img/arrow.png" alt="←" style="width:16px; margin-right:4px;"> Back to list
                 </a>
             </div>
