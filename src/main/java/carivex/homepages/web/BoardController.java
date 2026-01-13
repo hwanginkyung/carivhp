@@ -8,59 +8,76 @@ import carivex.homepages.domain.resource.ResourceCategory;
 import carivex.homepages.domain.resource.ResourcePost;
 import carivex.homepages.domain.resource.service.ResourceService;
 import lombok.RequiredArgsConstructor;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
-import java.util.List;
-
 @Controller
 @RequiredArgsConstructor
 public class BoardController {
+
+    private static final int PAGE_SIZE = 10;
+    private static final int PAGE_BUTTONS = 5;
 
     private final NoticeService noticeService;
     private final ResourceService resourceService;
 
     // ===== Notices (public)
     @GetMapping("/sub4.html")
-    public String noticeAll(Model model) {
-        model.addAttribute("notices", noticeService.listAll());
+    public String noticeAll(@RequestParam(name = "page", defaultValue = "0") int page, Model model) {
+        Page<Notice> notices = noticeService.listAll(pageable(page));
+        model.addAttribute("notices", notices.getContent());
+        addPagination(model, notices);
         model.addAttribute("activeTab", "all");
         return "sub4";
     }
 
     @GetMapping("/en/sub4.html")
-    public String noticeAllEn(Model model) {
-        model.addAttribute("notices", noticeService.listAll());
+    public String noticeAllEn(@RequestParam(name = "page", defaultValue = "0") int page, Model model) {
+        Page<Notice> notices = noticeService.listAll(pageable(page));
+        model.addAttribute("notices", notices.getContent());
+        addPagination(model, notices);
         model.addAttribute("activeTab", "all");
         return "sub4_en";
     }
 
     @GetMapping("/sub4-1.html")
-    public String noticePress(Model model) {
-        model.addAttribute("notices", noticeService.listByCategory(NoticeCategory.PRESS));
+    public String noticePress(@RequestParam(name = "page", defaultValue = "0") int page, Model model) {
+        Page<Notice> notices = noticeService.listByCategory(NoticeCategory.PRESS, pageable(page));
+        model.addAttribute("notices", notices.getContent());
+        addPagination(model, notices);
         model.addAttribute("activeTab", "press");
         return "sub4-1";
     }
 
     @GetMapping("/en/sub4-1.html")
-    public String noticePressEn(Model model) {
-        model.addAttribute("notices", noticeService.listByCategory(NoticeCategory.PRESS));
+    public String noticePressEn(@RequestParam(name = "page", defaultValue = "0") int page, Model model) {
+        Page<Notice> notices = noticeService.listByCategory(NoticeCategory.PRESS, pageable(page));
+        model.addAttribute("notices", notices.getContent());
+        addPagination(model, notices);
         model.addAttribute("activeTab", "press");
         return "sub4-1_en";
     }
 
     @GetMapping("/sub4-2.html")
-    public String noticeUnion(Model model) {
-        model.addAttribute("notices", noticeService.listByCategory(NoticeCategory.UNION));
+    public String noticeUnion(@RequestParam(name = "page", defaultValue = "0") int page, Model model) {
+        Page<Notice> notices = noticeService.listByCategory(NoticeCategory.UNION, pageable(page));
+        model.addAttribute("notices", notices.getContent());
+        addPagination(model, notices);
         model.addAttribute("activeTab", "union");
         return "sub4-2";
     }
 
     @GetMapping("/en/sub4-2.html")
-    public String noticeUnionEn(Model model) {
-        model.addAttribute("notices", noticeService.listByCategory(NoticeCategory.UNION));
+    public String noticeUnionEn(@RequestParam(name = "page", defaultValue = "0") int page, Model model) {
+        Page<Notice> notices = noticeService.listByCategory(NoticeCategory.UNION, pageable(page));
+        model.addAttribute("notices", notices.getContent());
+        addPagination(model, notices);
         model.addAttribute("activeTab", "union");
         return "sub4-2_en";
     }
@@ -81,71 +98,91 @@ public class BoardController {
 
     // ===== Resources (public)
     @GetMapping("/sub3.html")
-    public String resourceAll(Model model) {
-        model.addAttribute("resources", resourceService.listAll());
+    public String resourceAll(@RequestParam(name = "page", defaultValue = "0") int page, Model model) {
+        Page<ResourcePost> resources = resourceService.listAll(pageable(page));
+        model.addAttribute("resources", resources.getContent());
+        addPagination(model, resources);
         model.addAttribute("activeTab", "all");
         return "sub3";
     }
 
     @GetMapping("/en/sub3.html")
-    public String resourceAllEn(Model model) {
-        model.addAttribute("resources", resourceService.listAll());
+    public String resourceAllEn(@RequestParam(name = "page", defaultValue = "0") int page, Model model) {
+        Page<ResourcePost> resources = resourceService.listAll(pageable(page));
+        model.addAttribute("resources", resources.getContent());
+        addPagination(model, resources);
         model.addAttribute("activeTab", "all");
         return "sub3_en";
     }
 
     @GetMapping("/sub3-1.html")
-    public String resourceStats(Model model) {
-        model.addAttribute("resources", resourceService.listByCategory(ResourceCategory.EXPORT_STATS));
+    public String resourceStats(@RequestParam(name = "page", defaultValue = "0") int page, Model model) {
+        Page<ResourcePost> resources = resourceService.listByCategory(ResourceCategory.EXPORT_STATS, pageable(page));
+        model.addAttribute("resources", resources.getContent());
+        addPagination(model, resources);
         model.addAttribute("activeTab", "export_stats");
         return "sub3-1";
     }
 
     @GetMapping("/en/sub3-1.html")
-    public String resourceStatsEn(Model model) {
-        model.addAttribute("resources", resourceService.listByCategory(ResourceCategory.EXPORT_STATS));
+    public String resourceStatsEn(@RequestParam(name = "page", defaultValue = "0") int page, Model model) {
+        Page<ResourcePost> resources = resourceService.listByCategory(ResourceCategory.EXPORT_STATS, pageable(page));
+        model.addAttribute("resources", resources.getContent());
+        addPagination(model, resources);
         model.addAttribute("activeTab", "export_stats");
         return "sub3-1_en";
     }
 
     @GetMapping("/sub3-2.html")
-    public String resourceCustoms(Model model) {
-        model.addAttribute("resources", resourceService.listByCategory(ResourceCategory.CUSTOMS_STANDARD));
+    public String resourceCustoms(@RequestParam(name = "page", defaultValue = "0") int page, Model model) {
+        Page<ResourcePost> resources = resourceService.listByCategory(ResourceCategory.CUSTOMS_STANDARD, pageable(page));
+        model.addAttribute("resources", resources.getContent());
+        addPagination(model, resources);
         model.addAttribute("activeTab", "customs");
         return "sub3-2";
     }
 
     @GetMapping("/en/sub3-2.html")
-    public String resourceCustomsEn(Model model) {
-        model.addAttribute("resources", resourceService.listByCategory(ResourceCategory.CUSTOMS_STANDARD));
+    public String resourceCustomsEn(@RequestParam(name = "page", defaultValue = "0") int page, Model model) {
+        Page<ResourcePost> resources = resourceService.listByCategory(ResourceCategory.CUSTOMS_STANDARD, pageable(page));
+        model.addAttribute("resources", resources.getContent());
+        addPagination(model, resources);
         model.addAttribute("activeTab", "customs");
         return "sub3-2_en";
     }
 
     @GetMapping("/sub3-3.html")
-    public String resourceLaw(Model model) {
-        model.addAttribute("resources", resourceService.listByCategory(ResourceCategory.LAW_OFFICIAL));
+    public String resourceLaw(@RequestParam(name = "page", defaultValue = "0") int page, Model model) {
+        Page<ResourcePost> resources = resourceService.listByCategory(ResourceCategory.LAW_OFFICIAL, pageable(page));
+        model.addAttribute("resources", resources.getContent());
+        addPagination(model, resources);
         model.addAttribute("activeTab", "law");
         return "sub3-3";
     }
 
     @GetMapping("/en/sub3-3.html")
-    public String resourceLawEn(Model model) {
-        model.addAttribute("resources", resourceService.listByCategory(ResourceCategory.LAW_OFFICIAL));
+    public String resourceLawEn(@RequestParam(name = "page", defaultValue = "0") int page, Model model) {
+        Page<ResourcePost> resources = resourceService.listByCategory(ResourceCategory.LAW_OFFICIAL, pageable(page));
+        model.addAttribute("resources", resources.getContent());
+        addPagination(model, resources);
         model.addAttribute("activeTab", "law");
         return "sub3-3_en";
     }
 
     @GetMapping("/sub3-4.html")
-    public String resourceForms(Model model) {
-        model.addAttribute("resources", resourceService.listByCategory(ResourceCategory.FORMS));
+    public String resourceForms(@RequestParam(name = "page", defaultValue = "0") int page, Model model) {
+        Page<ResourcePost> resources = resourceService.listByCategory(ResourceCategory.FORMS, pageable(page));
+        model.addAttribute("resources", resources.getContent());
+        addPagination(model, resources);
         model.addAttribute("activeTab", "forms");
         return "sub3-4";
     }
 
     @GetMapping("/en/sub3-4.html")
-    public String resourceFormsEn(Model model) {
-        model.addAttribute("resources", resourceService.listByCategory(ResourceCategory.FORMS));
+    public String resourceFormsEn(@RequestParam(name = "page", defaultValue = "0") int page, Model model) {
+        Page<ResourcePost> resources = resourceService.listByCategory(ResourceCategory.FORMS, pageable(page));
+        model.addAttribute("resources", resources.getContent());
+        addPagination(model, resources);
         model.addAttribute("activeTab", "forms");
         return "sub3-4_en";
     }
@@ -162,5 +199,39 @@ public class BoardController {
         ResourcePost p = resourceService.get(id);
         model.addAttribute("resource", p);
         return "view_resource_public_en";
+    }
+
+    private Pageable pageable(int page) {
+        return PageRequest.of(page, PAGE_SIZE, Sort.by(Sort.Direction.DESC, "id"));
+    }
+
+    private void addPagination(Model model, Page<?> page) {
+        int totalPages = page.getTotalPages();
+        int currentPage = page.getNumber();
+        if (totalPages == 0) {
+            model.addAttribute("totalPages", 0);
+            model.addAttribute("currentPage", 0);
+            model.addAttribute("startPage", 0);
+            model.addAttribute("endPage", 0);
+            model.addAttribute("hasPrevBlock", false);
+            model.addAttribute("hasNextBlock", false);
+            model.addAttribute("prevBlockPage", 0);
+            model.addAttribute("nextBlockPage", 0);
+            return;
+        }
+
+        int startPage = (currentPage / PAGE_BUTTONS) * PAGE_BUTTONS;
+        int endPage = Math.min(startPage + PAGE_BUTTONS - 1, totalPages - 1);
+        boolean hasPrevBlock = startPage > 0;
+        boolean hasNextBlock = endPage < totalPages - 1;
+
+        model.addAttribute("totalPages", totalPages);
+        model.addAttribute("currentPage", currentPage);
+        model.addAttribute("startPage", startPage);
+        model.addAttribute("endPage", endPage);
+        model.addAttribute("hasPrevBlock", hasPrevBlock);
+        model.addAttribute("hasNextBlock", hasNextBlock);
+        model.addAttribute("prevBlockPage", Math.max(0, startPage - 1));
+        model.addAttribute("nextBlockPage", Math.min(totalPages - 1, endPage + 1));
     }
 }

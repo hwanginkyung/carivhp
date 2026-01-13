@@ -5,6 +5,8 @@ import carivex.homepages.domain.notice.NoticeCategory;
 
 import carivex.homepages.domain.notice.repo.NoticeRepository;
 import lombok.RequiredArgsConstructor;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -23,8 +25,18 @@ public class NoticeService {
     }
 
     @Transactional(readOnly = true)
+    public Page<Notice> listAll(Pageable pageable) {
+        return noticeRepository.findAll(pageable);
+    }
+
+    @Transactional(readOnly = true)
     public List<Notice> listByCategory(NoticeCategory category) {
         return noticeRepository.findByCategory(category, Sort.by(Sort.Direction.DESC, "id"));
+    }
+
+    @Transactional(readOnly = true)
+    public Page<Notice> listByCategory(NoticeCategory category, Pageable pageable) {
+        return noticeRepository.findByCategory(category, pageable);
     }
 
     @Transactional(readOnly = true)

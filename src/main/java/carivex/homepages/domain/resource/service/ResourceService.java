@@ -4,6 +4,8 @@ import carivex.homepages.domain.resource.ResourceCategory;
 import carivex.homepages.domain.resource.ResourcePost;
 import carivex.homepages.domain.resource.repo.ResourceRepository;
 import lombok.RequiredArgsConstructor;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -22,8 +24,18 @@ public class ResourceService {
     }
 
     @Transactional(readOnly = true)
+    public Page<ResourcePost> listAll(Pageable pageable) {
+        return resourceRepository.findAll(pageable);
+    }
+
+    @Transactional(readOnly = true)
     public List<ResourcePost> listByCategory(ResourceCategory category) {
         return resourceRepository.findByCategory(category, Sort.by(Sort.Direction.DESC, "id"));
+    }
+
+    @Transactional(readOnly = true)
+    public Page<ResourcePost> listByCategory(ResourceCategory category, Pageable pageable) {
+        return resourceRepository.findByCategory(category, pageable);
     }
 
     @Transactional(readOnly = true)
