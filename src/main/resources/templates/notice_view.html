@@ -1,33 +1,207 @@
 <!DOCTYPE html>
-<html lang="ko">
+<html lang="ko" xmlns:th="http://www.thymeleaf.org">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <link rel="stylesheet" href="/css/style.css" />
-  <title th:text="${notice.title}">공지 상세</title>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title th:text="${resource.title}">공지 상세</title>
+    <link rel="stylesheet" href="/css/style.css" />
+    <link rel="stylesheet" as="style" crossorigin href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.css" />
 </head>
 <body>
-  <div style="max-width: 980px; margin: 40px auto; padding: 0 16px;">
-    <a href="/sub4.html" style="display:inline-block; margin-bottom: 16px;">← 목록으로</a>
-    <a th:href="@{/en/notice_view.html(id=${notice.id})}" style="float:right;">View in English</a>
-    <h1 th:text="${notice.title}">제목</h1>
-    <div style="opacity:0.7; margin: 8px 0 24px;">
-      <span th:text="${notice.category.label}">카테고리</span>
-      <span> · </span>
-      <span th:text="${#temporals.format(notice.createdAt, 'yyyy-MM-dd HH:mm')}">2026-01-01</span>
-    </div>
+    
+    <header class="header">
+    <div class="container header-inner">
+        <h1 class="logo">
+            <a href='./index.html'>
+                <img src='/img/logo.png' alt="한국중고자동차수출조합">
+            </a>
+          </h1>
 
-    <div style="white-space: pre-wrap; line-height: 1.7;" th:text="${notice.content}">
-      내용
-    </div>
+        <div class="mobile-controls">
+            <a class="lang-switch-mobile" href="/en/notice_view.html">
+                <img src='/img/en.png' alt="en">
+            </a>
+            
+            <button type="button" class="btn-hamburger">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+        </div>
 
-    <div th:if="${notice.fileStoredName != null}" style="margin-top: 24px;">
-      <div style="font-weight: 600; margin-bottom: 8px;">첨부파일</div>
-      <a th:href="@{/files/{stored}(stored=${notice.fileStoredName}, name=${notice.fileOriginalName})}"
-         th:text="${notice.fileOriginalName}">download</a>
+
+        <nav class="gnb">
+            <ul class="main-menu">
+                <li class="depth-1">
+                    <a href='./sub1-1.html'>조합 소개</a>
+                    <ul class="depth-2">
+                        <li><a href='./sub1-1.html'>인사말</a></li>
+                        <li><a href='./sub1-2.html'>설립 목적 및 비전</a></li>
+                        <li><a href='./sub1-3.html'>주요 연혁</a></li>
+                    </ul>
+                </li>
+
+                <li class="depth-1">
+                    <a href='./sub2-1.html'>사업 안내</a>
+                    <ul class="depth-2">
+                        <li><a href='./sub2-1.html'>주요 업무</a></li>
+                        <li><a href='./sub2-2.html'>주요 사업</a></li>
+                        <li><a href='./sub2-3.html'>협력업체</a></li>
+                    </ul>
+                </li>
+
+                <li class="depth-1">
+                    <a href='./sub3.html'>자료실</a>
+                    <ul class="depth-2">
+                        <li><a href='./sub3-1.html'>수출 통계</a></li>
+                        <li><a href='./sub3-2.html'>통관 기준 및 안내</a></li>
+                        <li><a href='./sub3-3.html'>법령 및 공문 모음</a></li>
+                        <li><a href='./sub3-4.html'>양식 및 서식 모음</a></li>
+                    </ul>
+                </li>
+
+                <li class="depth-1">
+                    <a href='./sub4.html'>공지사항</a>
+                    <ul class="depth-2">
+                        <li><a href='./sub4-1.html'>언론 보도</a></li>
+                        <li><a href='./sub4-2.html'>조합 공지</a></li>
+                    </ul>
+                </li>
+
+                <li class="depth-1">
+                    <a href='./sub5-1.html'>문의</a>
+                    <ul class="depth-2">
+                        <li><a href='./sub5-1.html'>문의하기</a></li>
+                        <li><a href='./sub5-2.html'>후원하기</a></li>
+                        <li><a href='./sub5-3.html'>오시는 길</a></li>
+                    </ul>
+                </li>
+                <li class="depth-1">
+                    <a class="lang-switch" href="/en/notice_view.html" aria-label="View in English">
+                        <img src='/img/en.png' alt="en">
+                    </a>
+                </li>
+            </ul>
+        </nav>
+        <div class="menu-overlay"></div>
     </div>
-  </div>
-  <div id="google_translate_element" aria-hidden="true"></div>
-  <script src="/js/lang-toggle.js"></script>
+            </header>
+
+    <main class="main-content">
+        <div class="container">
+            
+            <div class="view-nav-area">
+                <a href="/sub4.html" class="btn-back-list">
+                    <img src="/img/arrow.png" alt="←" style="width:16px; margin-right:4px;"> 목록으로
+                </a>
+            </div>
+
+            <div class="board-view-header">
+                <span class="view-cate" th:text="${resource.category.label}">카테고리</span>
+                <h1 class="view-title" th:text="${resource.title}">제목이 들어갑니다</h1>
+                
+                <div class="view-meta">
+                    <div class="meta-item">
+                        <span class="meta-label">작성자:</span>
+                        <span class="meta-value">한국중고자동차수출조합</span>
+                    </div>
+                    <div class="meta-item">
+                        <span class="meta-label">등록일:</span>
+                        <span class="meta-value" th:text="${#temporals.format(resource.createdAt, 'yyyy-MM-dd')}">2025-01-02</span>
+                    </div>
+                    <div class="meta-item">
+                        <span class="meta-label">조회수:</span>
+                        <span class="meta-value" th:text="${resource.views != null ? resource.views : 0}">0</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="view-divider"></div>
+
+            <div class="board-view-content">
+                <div style="white-space: pre-wrap;" th:utext="${resource.content}">
+내용이 들어갑니다.
+                </div>
+            </div>
+
+            <div class="board-file-area" th:if="${resource.fileStoredName != null}">
+                <div class="file-header-title">
+                    <span class="file-icon"><img src="/img/file.png" alt="📎"></span> 
+                    <p>첨부파일</p>
+                </div>
+                
+                <div class="file-list-box">
+                    <div class="file-item">
+                        <a th:href="@{/files/{stored}(stored=${resource.fileStoredName}, name=${resource.fileOriginalName})}" class="file-link">
+                            <span class="file-icon-paper"><img src="/img/file2.png" alt="📄"></span>
+                            <div class="file-info">
+                                <span class="file-name" th:text="${resource.fileOriginalName}">첨부파일이름.pdf</span>
+                                <span class="file-size" th:text="${resource.fileSize}">1.5MB</span>
+                            </div>
+                            <span class="file-download-btn">
+                                <img src="/img/download.png" alt="다운로드">
+                            </span>
+                        </a>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </main>
+
+    <footer class="footer">
+        <div class="footer-info">
+            <h1>사단법인 한국중고자동차수출조합</h1>
+                <p>TEL: 032-891-7070<br class="mo-br"> FAX : 032-891-7073</p> 
+                <p>© kucea.co.kr All Right Reserved.</p>
+        </div>
+    </footer>
+    <script src="/js/lang-toggle.js"></script>
+    <script>
+            const hamburgerBtn = document.querySelector('.btn-hamburger');
+            const closeBtn = document.querySelector('.btn-close-menu');
+            const gnb = document.querySelector('.gnb');
+            const overlay = document.querySelector('.menu-overlay');
+            const depth1Items = document.querySelectorAll('.depth-1');
+
+            if (hamburgerBtn) {
+                hamburgerBtn.addEventListener('click', () => {
+                    if (gnb) gnb.classList.add('active');
+                    if (overlay) overlay.classList.add('active');
+                    document.body.style.overflow = 'hidden';
+                });
+            }
+
+            const closeMenu = () => {
+                if (gnb) gnb.classList.remove('active');
+                if (overlay) overlay.classList.remove('active');
+                document.body.style.overflow = '';
+                
+                depth1Items.forEach(item => item.classList.remove('open'));
+            };
+
+            if (closeBtn) closeBtn.addEventListener('click', closeMenu);
+            if (overlay) overlay.addEventListener('click', closeMenu);
+
+            depth1Items.forEach(item => {
+                const link = item.querySelector('a'); 
+                const subMenu = item.querySelector('.depth-2'); 
+
+                if (subMenu && link) {
+                    link.addEventListener('click', (e) => {
+                        if (window.innerWidth <= 1200) {
+                            e.preventDefault(); 
+                            item.classList.toggle('open'); 
+                        }
+                    });
+                }
+            });
+
+            window.addEventListener('resize', () => {
+                if (window.innerWidth > 1024) {
+                    closeMenu();
+                }
+            });
+        </script>
 </body>
 </html>
