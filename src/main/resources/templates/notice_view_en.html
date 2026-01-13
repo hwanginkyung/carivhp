@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title th:text="${resource.title}">Notice Detail</title>
+    <title th:text="${notice.title}">Notice Detail</title>
     <link rel="stylesheet" href="/css/style.css" />
     <link rel="stylesheet" as="style" crossorigin href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.css" />
 </head>
@@ -18,7 +18,7 @@
           </h1>
 
         <div class="mobile-controls">
-            <a class="lang-switch-mobile" href="/sub5-3.html">
+            <a class="lang-switch-mobile" th:href="@{/notice_view.html(id=${notice.id})}">
                 <img src='/img/ko.png' alt="ko">
             </a>
             
@@ -77,7 +77,7 @@
                     </ul>
                 </li>
                 <li class="depth-1">
-                    <a class="lang-switch" href="/view_resource_public.html">
+                    <a class="lang-switch" th:href="@{/notice_view.html(id=${notice.id})}">
                         <img src='/img/ko.png' alt="ko">
                     </a>
                 </li>
@@ -91,14 +91,14 @@
         <div class="container">
             
             <div class="view-nav-area">
-                <a href="/sub3.html" class="btn-back-list">
+                <a href="/en/sub4.html" class="btn-back-list">
                     <img src="/img/arrow.png" alt="←" style="width:16px; margin-right:4px;"> Back to list
                 </a>
             </div>
 
             <div class="board-view-header">
-                <span class="view-cate" th:text="${resource.category.label}">Category</span>
-                <h1 class="view-title" th:text="${resource.title}">Title</h1>
+                <span class="view-cate" th:text="${notice.category.label}">Category</span>
+                <h1 class="view-title" th:text="${notice.title}">Title</h1>
                 
                 <div class="view-meta">
                     <div class="meta-item">
@@ -107,11 +107,7 @@
                     </div>
                     <div class="meta-item">
                         <span class="meta-label">Date:</span>
-                        <span class="meta-value" th:text="${#temporals.format(resource.createdAt, 'yyyy-MM-dd')}">2025-01-02</span>
-                    </div>
-                    <div class="meta-item">
-                        <span class="meta-label">Views:</span>
-                        <span class="meta-value" th:text="${resource.views != null ? resource.views : 0}">0</span>
+                        <span class="meta-value" th:text="${#temporals.format(notice.createdAt, 'yyyy-MM-dd')}">2025-01-02</span>
                     </div>
                 </div>
             </div>
@@ -119,12 +115,12 @@
             <div class="view-divider"></div>
 
             <div class="board-view-content">
-                <div style="white-space: pre-wrap;" th:utext="${resource.content}">
+                <div style="white-space: pre-wrap;" th:utext="${notice.content}">
 Content
                 </div>
             </div>
 
-            <div class="board-file-area" th:if="${resource.fileStoredName != null}">
+            <div class="board-file-area" th:if="${notice.fileStoredName != null}">
                 <div class="file-header-title">
                     <span class="file-icon"><img src="/img/file.png" alt="📎"></span> 
                     <p>attachment</p>
@@ -132,11 +128,10 @@ Content
                 
                 <div class="file-list-box">
                     <div class="file-item">
-                        <a th:href="@{/files/{stored}(stored=${resource.fileStoredName}, name=${resource.fileOriginalName})}" class="file-link">
+                        <a th:href="@{/files/{stored}(stored=${notice.fileStoredName}, name=${notice.fileOriginalName})}" class="file-link">
                             <span class="file-icon-paper"><img src="/img/file2.png" alt="📄"></span>
                             <div class="file-info">
-                                <span class="file-name" th:text="${resource.fileOriginalName}">attachment.pdf</span>
-                                <span class="file-size" th:text="${resource.fileSize}">1.5MB</span>
+                                <span class="file-name" th:text="${notice.fileOriginalName}">attachment.pdf</span>
                             </div>
                             <span class="file-download-btn">
                                 <img src="/img/download.png" alt="download">
