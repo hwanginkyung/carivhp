@@ -21,9 +21,15 @@ public class Notice extends BaseTimeEntity {
     @Column(nullable = false, length = 200)
     private String title;
 
+    @Column(length = 200)
+    private String titleEn;
+
     @Lob
     @Column(nullable = false)
     private String content;
+
+    @Lob
+    private String contentEn;
 
     @Column(length = 255)
     private String fileOriginalName;
@@ -32,19 +38,25 @@ public class Notice extends BaseTimeEntity {
     private String fileStoredName;
 
     public Notice(NoticeCategory category, String title, String content,
+                  String titleEn, String contentEn,
                   String fileOriginalName, String fileStoredName) {
         this.category = category;
         this.title = title;
+        this.titleEn = titleEn;
         this.content = content;
+        this.contentEn = contentEn;
         this.fileOriginalName = fileOriginalName;
         this.fileStoredName = fileStoredName;
     }
 
     public void update(NoticeCategory category, String title, String content,
+                       String titleEn, String contentEn,
                        String fileOriginalName, String fileStoredName) {
         this.category = category;
         this.title = title;
+        this.titleEn = titleEn;
         this.content = content;
+        this.contentEn = contentEn;
         this.fileOriginalName = fileOriginalName;
         this.fileStoredName = fileStoredName;
     }
