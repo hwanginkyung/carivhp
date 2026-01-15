@@ -3,9 +3,12 @@ package carivex.homepages.domain.translation;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.web.client.RestTemplateBuilder;
+import com.fasterxml.jackson.databind.JsonNode;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import org.springframework.http.HttpEntity;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.MediaType;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestClientException;
 import org.springframework.web.client.RestTemplate;
@@ -21,15 +24,18 @@ public class TranslationService {
     private final String endpoint;
     private final String apiKey;
     private final RestTemplate restTemplate;
+    private final ObjectMapper objectMapper;
 
     public TranslationService(@Value("${app.translation.enabled:false}") boolean enabled,
                               @Value("${app.translation.endpoint:https://libretranslate.de/translate}") String endpoint,
                               @Value("${app.translation.api-key:}") String apiKey,
-                              RestTemplateBuilder restTemplateBuilder) {
+                              RestTemplateBuilder restTemplateBuilder,
+                              ObjectMapper objectMapper) {
         this.enabled = enabled;
         this.endpoint = endpoint;
         this.apiKey = apiKey;
         this.restTemplate = restTemplateBuilder.build();
+        this.objectMapper = objectMapper;
     }
 
     public String translateToEnglishText(String text) {
@@ -56,23 +62,36 @@ public class TranslationService {
 
         HttpHeaders headers = new HttpHeaders();
         headers.setContentType(MediaType.APPLICATION_JSON);
+        headers.setAccept(MediaType.parseMediaTypes("application/json"));
 
         try {
-            TranslationResponse response = restTemplate.postForObject(
+            ResponseEntity<String> response = restTemplate.postForEntity(
                     endpoint,
                     new HttpEntity<>(payload, headers),
-                    TranslationResponse.class
+                    String.class
             );
-            if (response == null || response.translatedText() == null || response.translatedText().isBlank()) {
+            String body = response != null ? response.getBody() : null;
+            if (body == null || body.isBlank()) {
                 return null;
             }
-            return response.translatedText();
+            return extractTranslatedText(body);
         } catch (RestClientException ex) {
             log.warn("Translation failed for endpoint {}: {}", endpoint, ex.getMessage());
             return null;
         }
     }
 
-    private record TranslationResponse(String translatedText) {
+    private String extractTranslatedText(String body) {
+        try {
+            JsonNode root = objectMapper.readTree(body);
+            JsonNode translated = root.get("translatedText");
+            if (translated == null || translated.asText().isBlank()) {
+                return null;
+            }
+            return translated.asText();
+        } catch (Exception ex) {
+            log.warn("Translation response parsing failed: {}", ex.getMessage());
+            return null;
+        }
     }
 }
