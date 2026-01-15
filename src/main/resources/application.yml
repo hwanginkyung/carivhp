@@ -8,6 +8,10 @@ spring:
 
 app:
   upload-dir: ${UPLOAD_DIR:./uploads}
+  translation:
+    enabled: ${TRANSLATION_ENABLED:true}
+    endpoint: ${TRANSLATION_ENDPOINT:https://libretranslate.de/translate}
+    api-key: ${TRANSLATION_API_KEY:}
 
 server:
   port: 8080

@@ -4,6 +4,7 @@ import carivex.homepages.domain.notice.Notice;
 import carivex.homepages.domain.notice.NoticeCategory;
 
 import carivex.homepages.domain.notice.repo.NoticeRepository;
+import carivex.homepages.domain.translation.TranslationService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -18,6 +19,7 @@ import java.util.List;
 public class NoticeService {
 
     private final NoticeRepository noticeRepository;
+    private final TranslationService translationService;
 
     @Transactional(readOnly = true)
     public List<Notice> listAll() {
@@ -48,14 +50,18 @@ public class NoticeService {
     @Transactional
     public Notice create(NoticeCategory category, String title, String content,
                          String fileOriginal, String fileStored) {
-        return noticeRepository.save(new Notice(category, title, content, fileOriginal, fileStored));
+        String titleEn = translationService.translateToEnglishText(title);
+        String contentEn = translationService.translateToEnglishHtml(content);
+        return noticeRepository.save(new Notice(category, title, content, titleEn, contentEn, fileOriginal, fileStored));
     }
 
     @Transactional
     public Notice update(Long id, NoticeCategory category, String title, String content,
                          String fileOriginal, String fileStored) {
         Notice n = get(id);
-        n.update(category, title, content, fileOriginal, fileStored);
+        String titleEn = translationService.translateToEnglishText(title);
+        String contentEn = translationService.translateToEnglishHtml(content);
+        n.update(category, title, content, titleEn, contentEn, fileOriginal, fileStored);
         return n;
     }
 

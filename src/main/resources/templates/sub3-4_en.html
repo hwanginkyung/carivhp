@@ -113,7 +113,7 @@
                             <div class="board-item" th:each="r : ${resources}">
                                 <div class="col-cate"><span class="cate-badge" th:text="${r.category.label}">Export Statistics</span></div>
                                 <div class="col-title">
-                                    <a th:href="@{/en/view_resource_public.html(id=${r.id})}" th:text="${r.title}">Title</a>
+                                    <a th:href="@{/en/view_resource_public.html(id=${r.id})}" th:text="${r.titleEn != null ? r.titleEn : r.title}">Title</a>
                                 </div>
                                 <div class="col-date" th:text="${#temporals.format(r.createdAt, 'yyyy-MM-dd')}">2025-01-02</div>
                             </div>
