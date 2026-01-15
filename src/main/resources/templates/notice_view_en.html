@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title th:text="${notice.title}">Notice Detail</title>
+    <title th:text="${notice.titleEn != null ? notice.titleEn : notice.title}">Notice Detail</title>
     <link rel="stylesheet" href="/css/style.css" />
     <link rel="stylesheet" as="style" crossorigin href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.css" />
 </head>
@@ -98,7 +98,7 @@
 
             <div class="board-view-header">
                 <span class="view-cate" th:text="${notice.category.label}">Category</span>
-                <h1 class="view-title" th:text="${notice.title}">Title</h1>
+                <h1 class="view-title" th:text="${notice.titleEn != null ? notice.titleEn : notice.title}">Title</h1>
                 
                 <div class="view-meta">
                     <div class="meta-item">
@@ -115,7 +115,7 @@
             <div class="view-divider"></div>
 
             <div class="board-view-content">
-                <div style="white-space: pre-wrap;" th:utext="${notice.content}">
+                <div style="white-space: pre-wrap;" th:utext="${notice.contentEn != null ? notice.contentEn : notice.content}">
 Content
                 </div>
             </div>

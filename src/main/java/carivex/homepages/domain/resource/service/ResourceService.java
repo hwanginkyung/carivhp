@@ -3,6 +3,7 @@ package carivex.homepages.domain.resource.service;
 import carivex.homepages.domain.resource.ResourceCategory;
 import carivex.homepages.domain.resource.ResourcePost;
 import carivex.homepages.domain.resource.repo.ResourceRepository;
+import carivex.homepages.domain.translation.TranslationService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -17,6 +18,7 @@ import java.util.List;
 public class ResourceService {
 
     private final ResourceRepository resourceRepository;
+    private final TranslationService translationService;
 
     @Transactional(readOnly = true)
     public List<ResourcePost> listAll() {
@@ -47,14 +49,20 @@ public class ResourceService {
     @Transactional
     public ResourcePost create(ResourceCategory category, String title, String content,
                                String fileOriginal, String fileStored) {
-        return resourceRepository.save(new ResourcePost(category, title, content, fileOriginal, fileStored));
+        String titleEn = translationService.translateToEnglishText(title);
+        String contentEn = translationService.translateToEnglishHtml(content);
+        return resourceRepository.save(
+                new ResourcePost(category, title, content, titleEn, contentEn, fileOriginal, fileStored)
+        );
     }
 
     @Transactional
     public ResourcePost update(Long id, ResourceCategory category, String title, String content,
                                String fileOriginal, String fileStored) {
         ResourcePost p = get(id);
-        p.update(category, title, content, fileOriginal, fileStored);
+        String titleEn = translationService.translateToEnglishText(title);
+        String contentEn = translationService.translateToEnglishHtml(content);
+        p.update(category, title, content, titleEn, contentEn, fileOriginal, fileStored);
         return p;
     }
 

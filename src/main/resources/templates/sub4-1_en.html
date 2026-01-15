@@ -110,7 +110,7 @@
                             <div class="board-item" th:each="n : ${notices}">
                                 <div class="col-cate"><span class="cate-badge" th:text="${n.category.label}">Press</span></div>
                                 <div class="col-title">
-                                    <a th:href="@{/en/notice_view.html(id=${n.id})}" th:text="${n.title}">Title</a>
+                                    <a th:href="@{/en/notice_view.html(id=${n.id})}" th:text="${n.titleEn != null ? n.titleEn : n.title}">Title</a>
                                 </div>
                                 <div class="col-date" th:text="${#temporals.format(n.createdAt, 'yyyy-MM-dd')}">2025-01-02</div>
                             </div>
