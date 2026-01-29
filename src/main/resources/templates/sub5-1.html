@@ -92,21 +92,22 @@
                     <div class="board-list-wrap">
                         <div class="board-header">
                             <span class="col-cate" style="width:100px; text-align:left;">상태</span>
-                            <span class="col-title" style="text-align:left;">제목</span>
+                            <span class="col-title" style="text-align:left;">내용</span>
                             <span class="col-date" style="text-align:right;">등록일</span>
                         </div>
 
                         <div class="board-item-list">
                             <div class="board-item" th:each="q : ${inquiries}">
                                 <div class="col-cate" style="width:100px; justify-content:center;">
-                                    <span class="status-badge" 
-                                          th:classappend="${q.status == 'ANSWERED'} ? 'done' : 'wait'"
-                                          th:text="${q.status == 'ANSWERED'} ? '답변완료' : '답변대기'">
+                                    <span class="status-badge"
+                                          th:classappend="${q.status == 'DONE'} ? 'done' : 'wait'"
+                                          th:text="${q.status == 'DONE'} ? '답변완료' : '답변대기'">
                                         답변대기
                                     </span>
                                 </div>
                                 <div class="col-title">
-                                    <a th:href="@{/inquiry_view.html(id=${q.id})}" th:text="${q.title}">문의 제목입니다.</a>
+                                    <a th:href="@{/inquiry_view.html(id=${q.id})}"
+                                       th:text="${#strings.abbreviate(q.content, 60)}">문의 내용입니다.</a>
                                 </div>
                                 <div class="col-date" th:text="${#temporals.format(q.createdAt, 'yyyy-MM-dd')}">
                                     2025-01-30

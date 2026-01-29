@@ -5,6 +5,7 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 @Controller
 @RequiredArgsConstructor
@@ -87,4 +88,16 @@ public class PageController {
 
     @GetMapping("/en/inquiry_form.html")
     public String inquiryFormEn() { return "inquiry_form"; }
+
+    @GetMapping("/inquiry_view.html")
+    public String inquiryView(@RequestParam("id") Long id, Model model) {
+        model.addAttribute("inquiry", inquiryService.get(id));
+        return "inquiry_view";
+    }
+
+    @GetMapping("/en/inquiry_view.html")
+    public String inquiryViewEn(@RequestParam("id") Long id, Model model) {
+        model.addAttribute("inquiry", inquiryService.get(id));
+        return "inquiry_view_en";
+    }
 }
