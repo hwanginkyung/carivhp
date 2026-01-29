@@ -106,15 +106,15 @@
                 </div>
                 <div class="sub-container">
                   <p>Hello.<br>
-I am Park Younghwa, the 8th president of the Korea Used Car Export Association.<br>
-We are a member-centered incorporated association and currently export over 300,000 used cars annually to about 160 countries worldwide.<br>
+I am Park Younghwa, the 11th president of the Korea Used Car Export Association.<br>
+We are a member-centered incorporated association and currently export over 800,000 used cars annually to about 180 countries worldwide.<br>
 Based on localization strategies and global export competitiveness tailored to each country, we continue to strengthen domestic export infrastructure as well as human, material, and eco-friendly competitiveness.<br>
 We also extend our sincere gratitude to all members who work on the front lines amid rapid market changes.<br><br>
 Respecting the will of our members, we are moving forward together with goals such as developing an integrated logistics complex, introducing a one-stop system, and building an eco-friendly logistics framework.<br>
 Through this, we will lay the foundation for a more advanced export environment, maximize used-car exports, and raise pride among members and industry workers, contributing to national export growth.<br><br>
 We always welcome visits from members and related industry participants with an open mind and a low threshold, and we promise to listen to your advice and opinions.<br><br>
 With active participation and encouragement from members, we will show a continually growing and advancing association.<br>
-During my term, we will pursue eco-friendly logistics complexes, high value-added systems, financial independence, and new overseas market development to ease your burdens and build an association that grows together in a better environment.<br><br>Thank you.</p>
+During my term, we will pursue eco-friendly logistics complexes, high value-added systems, financial independence, and new overseas market development to ease your burdens and build an association that grows together in a better environment.<br><br>Thank you.<br><br><span class="signature-font">President Park Younghwa</span></p>
                   </div>
             </div>
         </section>
@@ -133,6 +133,11 @@ During my term, we will pursue eco-friendly logistics complexes, high value-adde
             const overlay = document.querySelector('.menu-overlay');
             const depth1Items = document.querySelectorAll('.depth-1');
 
+            let isTouchMode = false;
+            window.addEventListener('touchstart', () => {
+                isTouchMode = true;
+            });
+
             if (hamburgerBtn) {
                 hamburgerBtn.addEventListener('click', () => {
                     if (gnb) gnb.classList.add('active');
@@ -146,7 +151,10 @@ During my term, we will pursue eco-friendly logistics complexes, high value-adde
                 if (overlay) overlay.classList.remove('active');
                 document.body.style.overflow = '';
                 
-                depth1Items.forEach(item => item.classList.remove('open'));
+                depth1Items.forEach(item => {
+                    item.classList.remove('open');        
+                    item.classList.remove('hover-active'); 
+                });
             };
 
             if (closeBtn) closeBtn.addEventListener('click', closeMenu);
@@ -156,19 +164,55 @@ During my term, we will pursue eco-friendly logistics complexes, high value-adde
                 const link = item.querySelector('a'); 
                 const subMenu = item.querySelector('.depth-2'); 
 
+                item.addEventListener('mouseenter', () => {
+                    if (isTouchMode) return; 
+                    
+                    if (window.innerWidth > 1200) {
+                        item.classList.add('hover-active');
+                    }
+                });
+
+                item.addEventListener('mouseleave', () => {
+                    if (isTouchMode) return; 
+
+                    if (window.innerWidth > 1200) {
+                        item.classList.remove('hover-active');
+                    }
+                });
+
                 if (subMenu && link) {
                     link.addEventListener('click', (e) => {
-                        if (window.innerWidth <= 1200) {
+                        const isMobile = window.innerWidth <= 1200; 
+
+                        if (isMobile) {
                             e.preventDefault(); 
                             item.classList.toggle('open'); 
+                        } else {
+                            
+                            if (!item.classList.contains('hover-active')) {
+                                e.preventDefault(); 
+                                depth1Items.forEach(other => {
+                                    if (other !== item) other.classList.remove('hover-active');
+                                });
+
+                                item.classList.add('hover-active');
+                            }
                         }
                     });
                 }
             });
 
             window.addEventListener('resize', () => {
-                if (window.innerWidth > 1024) {
+                if (window.innerWidth > 1200) {
                     closeMenu();
+                }
+            });
+
+            document.addEventListener('click', (e) => {
+                if (window.innerWidth > 1200) {
+                    if (!e.target.closest('.depth-1')) {
+                        depth1Items.forEach(item => item.classList.remove('hover-active'));
+                    }
                 }
             });
         </script>

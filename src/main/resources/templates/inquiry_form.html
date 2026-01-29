@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>한국중고자동차수출조합</title>
-    <link rel="stylesheet" href="/css/style.css">
+    <link rel="stylesheet" href="/main/resources/static/css/style.css">
     <link rel="stylesheet" as="style" crossorigin href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.css" />
 </head>
 <body>
@@ -18,7 +18,7 @@
           </h1>
 
         <div class="mobile-controls">
-            <a class="lang-switch-mobile" href="/en/sub3-4.html">
+            <a class="lang-switch-mobile" href="/en/inquiry_form.html">
                 <img src='/img/en.png' alt="en">
             </a>
             
@@ -77,7 +77,7 @@
                     </ul>
                 </li>
                 <li class="depth-1">
-                    <a class="lang-switch" href="/en/sub3-4.html" aria-label="View in English">
+                    <a class="lang-switch" href="/en/inquiry_form.html" aria-label="View in English">
                         <img src='/img/en.png' alt="en">
                     </a>
                 </li>
@@ -92,49 +92,47 @@
         <section class="section main-section">
             <div class="container">
                 <div class="sub-header">
-                    <h1>자료실</h1>
+                    <h1>문의</h1>
                 </div>
                 <div class="sub-container">
-                    <div class="board-tabs">
-                        <a href="./sub3.html" class="tab-item">전체</a>
-                        <a href="./sub3-1.html" class="tab-item">수출 통계</a>
-                        <a href="./sub3-2.html" class="tab-item">통관 기준 및 안내</a>
-                        <a href="./sub3-3.html" class="tab-item">법령 및 공문 모음</a>
-                        <a href="./sub3-4.html" class="tab-item active">양식 및 서식 모음</a>
-                    </div>
+                    <div class="inquiry-wrapper">
+                        <form class="inquiry-form" id="inquiryForm" action="/inquiry" method="post">
 
-                    <div class="board-list-wrap">
-                        <div class="board-header">
-                            <span class="col-cate">분류</span>
-                            <span class="col-title">제목</span>
-                            <span class="col-date">등록일</span>
-                        </div>
-                        <div class="board-item-list">
-                            <div class="board-item" th:each="r : ${resources}">
-                                <div class="col-cate"><span class="cate-badge" th:text="${r.category.label}">수출 통계</span></div>
-                                <div class="col-title">
-                                    <a th:href="@{/view_resource_public.html(id=${r.id})}" th:text="${r.title}">제목</a>
+                            <div class="form-row">
+                                <div class="form-group">
+                                    <label for="uName">이름 *</label>
+                                    <input type="text" id="uName" placeholder="홍길동" name="name">
                                 </div>
-                                <div class="col-date" th:text="${#temporals.format(r.createdAt, 'yyyy-MM-dd')}">2025-01-02</div>
+                                <div class="form-group">
+                                    <label for="uContact">연락처 *</label>
+                                    <input type="text" id="uContact" placeholder="010-1234-5678" name="contact">
+                                </div>
                             </div>
 
-                            <div class="board-item" th:if="${#lists.isEmpty(resources)}" style="justify-content:center; text-align:center;">
-                                <div class="col-title" style="width:100%; text-align:center;">등록된 자료가 없습니다.</div>
+                            <div class="form-group">
+                                <label for="uEmail">이메일 *</label>
+                                <input type="email" id="uEmail" placeholder="example@email.com" name="email">
                             </div>
 
-</div>
-                    </div>
+                            <div class="form-group">
+                                <label for="uType">문의 유형 *</label>
+                                <select id="uType" name="type">
+                                    <option value="" disabled selected>선택해주세요</option>
+                                    <option value="OPTION1">옵션1</option>
+                                    <option value="OPTION2">옵션2</option>
+                                    <option value="OPTION3">옵션3</option>
+                                </select>
+                            </div>
 
-                    <div class="pagination" th:if="${totalPages > 1}">
-                        <a th:if="${hasPrevBlock}" th:href="@{/sub3-4.html(page=${prevBlockPage})}" class="page-btn arrow">‹</a>
-                        <span th:if="${!hasPrevBlock}" class="page-btn arrow" style="pointer-events:none; opacity:0.4;">‹</span>
-                        <a th:each="pageNum : ${#numbers.sequence(startPage, endPage)}"
-                           th:href="@{/sub3-4.html(page=${pageNum})}"
-                           th:text="${pageNum + 1}"
-                           class="page-btn"
-                           th:classappend="${pageNum == currentPage} ? ' active'">1</a>
-                        <a th:if="${hasNextBlock}" th:href="@{/sub3-4.html(page=${nextBlockPage})}" class="page-btn arrow">›</a>
-                        <span th:if="${!hasNextBlock}" class="page-btn arrow" style="pointer-events:none; opacity:0.4;">›</span>
+                            <div class="form-group">
+                                <label for="uContent">문의 내용 *</label>
+                                <textarea id="uContent" placeholder="문의하실 내용을 자세히 작성해 주세요" name="content"></textarea>
+                            </div>
+
+                            <div class="btn-group">
+                                <button type="submit" class="btn-submit">문의하기</button>
+                            </div>
+                        </form>
                     </div>
                 </div>
             </div>
@@ -240,3 +238,20 @@
         </script>
 </body>
 </html>
+
+<script>
+    const form = document.getElementById('inquiryForm');
+    form.addEventListener('submit', function(e) {
+        const name = document.getElementById('uName').value;
+        const contact = document.getElementById('uContact').value;
+        const email = document.getElementById('uEmail').value;
+        const type = document.getElementById('uType').value;
+        const content = document.getElementById('uContent').value;
+
+        if(name === "") { e.preventDefault(); alert("이름을 입력해주세요."); return; }
+        if(contact === "") { e.preventDefault(); alert("연락처를 입력해주세요."); return; }
+        if(email === "") { e.preventDefault(); alert("이메일을 입력해주세요."); return; }
+        if(type === "" || type === null) { e.preventDefault(); alert("문의 유형을 선택해주세요."); return; }
+        if(content === "") { e.preventDefault(); alert("문의 내용을 입력해주세요."); return; }
+    });
+</script>

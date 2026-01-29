@@ -107,7 +107,7 @@
                 </div>
                 <div class="sub-container">
                     <div class="sub-container2">
-                        <p>한국중고차수출조합은 중고자동차 수출 전 과정에 걸쳐 수출·통관·물류·금융·IT 등 각 분야의 전문 기관 및 기업과 협력하여 안정적이고 효율적인 수출 환경을 구축하고 있습니다. 조합은 단순한 제휴를 넘어, 산업 전반의 신뢰와 지속 가능성을 높이기 위한 전략적 파트너십을 기반으로 협력 네트워크를 운영하고 있습니다.</p>
+                        <p>한국중고차수출조합은 중고자동차 수출 전 과정에 걸쳐 수출·통관·물류·금융·IT 등 각 분야의 전문 기관 및 기업과 협력하여 안정적이고 효율적인 수출 환경을 구축하고 있습니다. 조합은 단순한 제휴를 넘어, 산업 전반의 신뢰와 지속 가능성을 높이기 위한 전략적 파트너십을 기반으로 협력 네트워크를 운영하고 있습니다. 또한 조합은 수출 생태계의 경쟁력을 함께 높여갈 협력 파트너를 상시 모집하고 있습니다. 협력을 희망하는 기업 및 기관은 홈페이지 ‘문의하기’를 통해 문의해 주세요. 확인 후 담당자가 빠르게 안내드리겠습니다.</p>
                         <div class="partner-list">
                             <div class="partner-card">
                                 <div class="icon-box2">
@@ -205,6 +205,11 @@
             const overlay = document.querySelector('.menu-overlay');
             const depth1Items = document.querySelectorAll('.depth-1');
 
+            let isTouchMode = false;
+            window.addEventListener('touchstart', () => {
+                isTouchMode = true;
+            });
+
             if (hamburgerBtn) {
                 hamburgerBtn.addEventListener('click', () => {
                     if (gnb) gnb.classList.add('active');
@@ -218,7 +223,10 @@
                 if (overlay) overlay.classList.remove('active');
                 document.body.style.overflow = '';
                 
-                depth1Items.forEach(item => item.classList.remove('open'));
+                depth1Items.forEach(item => {
+                    item.classList.remove('open');        
+                    item.classList.remove('hover-active'); 
+                });
             };
 
             if (closeBtn) closeBtn.addEventListener('click', closeMenu);
@@ -228,19 +236,55 @@
                 const link = item.querySelector('a'); 
                 const subMenu = item.querySelector('.depth-2'); 
 
+                item.addEventListener('mouseenter', () => {
+                    if (isTouchMode) return; 
+                    
+                    if (window.innerWidth > 1200) {
+                        item.classList.add('hover-active');
+                    }
+                });
+
+                item.addEventListener('mouseleave', () => {
+                    if (isTouchMode) return; 
+
+                    if (window.innerWidth > 1200) {
+                        item.classList.remove('hover-active');
+                    }
+                });
+
                 if (subMenu && link) {
                     link.addEventListener('click', (e) => {
-                        if (window.innerWidth <= 1200) {
+                        const isMobile = window.innerWidth <= 1200; 
+
+                        if (isMobile) {
                             e.preventDefault(); 
                             item.classList.toggle('open'); 
+                        } else {
+                            
+                            if (!item.classList.contains('hover-active')) {
+                                e.preventDefault(); 
+                                depth1Items.forEach(other => {
+                                    if (other !== item) other.classList.remove('hover-active');
+                                });
+
+                                item.classList.add('hover-active');
+                            }
                         }
                     });
                 }
             });
 
             window.addEventListener('resize', () => {
-                if (window.innerWidth > 1024) {
+                if (window.innerWidth > 1200) {
                     closeMenu();
+                }
+            });
+
+            document.addEventListener('click', (e) => {
+                if (window.innerWidth > 1200) {
+                    if (!e.target.closest('.depth-1')) {
+                        depth1Items.forEach(item => item.classList.remove('hover-active'));
+                    }
                 }
             });
         </script>

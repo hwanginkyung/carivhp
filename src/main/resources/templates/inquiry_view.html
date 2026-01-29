@@ -1,14 +1,14 @@
 <!DOCTYPE html>
 <html lang="ko" xmlns:th="http://www.thymeleaf.org">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>한국중고자동차수출조합 - 문의</title>
-    <link rel="stylesheet" href="/css/style.css">
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title th:text="${resource.title}">문의 상세</title>
+    <link rel="stylesheet" href="/css/style.css" />
     <link rel="stylesheet" as="style" crossorigin href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.css" />
 </head>
 <body>
-
+    
     <header class="header">
         <div class="container header-inner">
             <h1 class="logo">
@@ -18,7 +18,7 @@
             </h1>
 
             <div class="mobile-controls">
-                <a class="lang-switch-mobile" href="/en/sub5-1.html">
+                <a class="lang-switch-mobile" th:href="@{/en/inquiry_view.html(id=${inquiry.id})}">
                     <img src='/img/en.png' alt="en">
                 </a>
                 
@@ -39,6 +39,7 @@
                             <li><a href='./sub1-3.html'>주요 연혁</a></li>
                         </ul>
                     </li>
+
                     <li class="depth-1">
                         <a href='./sub2-1.html'>사업 안내</a>
                         <ul class="depth-2">
@@ -47,6 +48,7 @@
                             <li><a href='./sub2-3.html'>협력업체</a></li>
                         </ul>
                     </li>
+
                     <li class="depth-1">
                         <a href='./sub3.html'>자료실</a>
                         <ul class="depth-2">
@@ -56,6 +58,7 @@
                             <li><a href='./sub3-4.html'>양식 및 서식 모음</a></li>
                         </ul>
                     </li>
+
                     <li class="depth-1">
                         <a href='./sub4.html'>공지사항</a>
                         <ul class="depth-2">
@@ -63,6 +66,7 @@
                             <li><a href='./sub4-2.html'>조합 공지</a></li>
                         </ul>
                     </li>
+
                     <li class="depth-1">
                         <a href='./sub5-1.html'>문의</a>
                         <ul class="depth-2">
@@ -72,7 +76,7 @@
                         </ul>
                     </li>
                     <li class="depth-1">
-                        <a class="lang-switch" href="/en/sub5-1.html" aria-label="View in English">
+                        <a class="lang-switch" th:href="@{/en/inquiry_view.html(id=${inquiry.id})}" aria-label="View in English">
                             <img src='/img/en.png' alt="en">
                         </a>
                     </li>
@@ -81,60 +85,81 @@
             <div class="menu-overlay"></div>
         </div>
     </header>
+
     <main class="main-content">
-        <section class="section main-section">
-            <div class="container">
-                <div class="sub-header">
-                    <h1>문의</h1>
+        <div class="container">
+            
+            <div class="view-nav-area">
+                <a href="/sub5-1.html" class="btn-back-list">
+                    <img src="/img/arrow.png" alt="←" style="width:16px; margin-right:4px;"> 목록으로
+                </a>
+            </div>
+
+            <div class="board-view-header">
+                <span class="view-cate" th:text="${resource.category.label}">카테고리</span>
+                <h1 class="view-title" th:text="${resource.title}">제목</h1>
+                
+                <div class="view-meta">
+                    <div class="meta-item">
+                        <span class="meta-label">등록일:</span>
+                        <span class="meta-value" th:text="${#temporals.format(resource.createdAt, 'yyyy-MM-dd')}">2025-01-02</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="view-divider"></div>
+
+            <div class="board-view-content">
+                <div style="white-space: pre-wrap;" th:utext="${resource.content}">
+내용
+                </div>
+            </div>
+
+            <div class="board-file-area" th:if="${resource.fileStoredName != null}">
+                <div class="file-header-title">
+                    <span class="file-icon"><img src="/img/file.png" alt="📎"></span> 
+                    <p>첨부파일</p>
                 </div>
                 
-                <div class="sub-container">
-                    <div class="board-list-wrap">
-                        <div class="board-header">
-                            <span class="col-cate" style="width:100px; text-align:left;">상태</span>
-                            <span class="col-title" style="text-align:left;">제목</span>
-                            <span class="col-date" style="text-align:right;">등록일</span>
-                        </div>
-
-                        <div class="board-item-list">
-                            <div class="board-item" th:each="q : ${inquiries}">
-                                <div class="col-cate" style="width:100px; justify-content:center;">
-                                    <span class="status-badge" 
-                                          th:classappend="${q.status == 'ANSWERED'} ? 'done' : 'wait'"
-                                          th:text="${q.status == 'ANSWERED'} ? '답변완료' : '답변대기'">
-                                        답변대기
-                                    </span>
-                                </div>
-                                <div class="col-title">
-                                    <a th:href="@{/inquiry_view.html(id=${q.id})}" th:text="${q.title}">문의 제목입니다.</a>
-                                </div>
-                                <div class="col-date" th:text="${#temporals.format(q.createdAt, 'yyyy-MM-dd')}">
-                                    2025-01-30
-                                </div>
+                <div class="file-list-box">
+                    <div class="file-item">
+                        <a th:href="@{/files/{stored}(stored=${resource.fileStoredName}, name=${resource.fileOriginalName})}" class="file-link">
+                            <span class="file-icon-paper"><img src="/img/file2.png" alt="📄"></span>
+                            <div class="file-info">
+                                <span class="file-name" th:text="${resource.fileOriginalName}">첨부파일이름.pdf</span>
+                                <span class="file-size" th:text="${resource.fileSize}">1.5MB</span>
                             </div>
-
-                            <div class="board-item" th:if="${#lists.isEmpty(inquiries)}" style="justify-content:center; padding: 40px 0;">
-                                <div style="color:#999;">등록된 문의 내역이 없습니다.</div>
-                            </div>
-                        </div>
+                            <span class="file-download-btn">
+                                <img src="/img/download.png" alt="다운로드">
+                            </span>
+                        </a>
                     </div>
-
-                    <div class="btn-area" style="text-align: right; margin-top: 20px;">
-                        <a href="/inquiry_form.html" class="btn-green" style="display:inline-block;">문의 작성</a>
-                    </div>
-
-                    <div class="pagination" th:if="${totalPages > 1}">
-                        <a th:if="${hasPrevBlock}" th:href="@{/sub5-1.html(page=${prevBlockPage})}" class="page-btn arrow">‹</a>
-                        <a th:each="pageNum : ${#numbers.sequence(startPage, endPage)}"
-                           th:href="@{/sub5-1.html(page=${pageNum})}"
-                           th:text="${pageNum + 1}"
-                           class="page-btn"
-                           th:classappend="${pageNum == currentPage} ? ' active'">1</a>
-                        <a th:if="${hasNextBlock}" th:href="@{/sub5-1.html(page=${nextBlockPage})}" class="page-btn arrow">›</a>
-                    </div>
-                    </div>
+                </div>
             </div>
-        </section>
+
+            <div class="admin-answer-section">
+                <div class="answer-card" th:if="${resource.answerContent != null}">
+                    <div class="answer-header">
+                        <div class="admin-profile">
+                            <span class="admin-badge">관리자 답변</span>
+                            <span class="admin-name">한국중고자동차수출조합</span>
+                        </div>
+                        <span class="answer-date" th:text="${#temporals.format(resource.answeredAt, 'yyyy-MM-dd HH:mm')}">
+                            2025-01-31 10:00
+                        </span>
+                    </div>
+                    <div class="answer-body">
+                        <div style="white-space: pre-wrap; line-height:1.6;" th:utext="${resource.answerContent}">
+여기에 관리자 답변 내용이 출력됩니다.
+                        </div>
+                    </div>
+                </div>
+
+                <div class="answer-card empty" th:if="${resource.answerContent == null}">
+                    <p>관리자가 확인 후 답변을 등록할 예정입니다.</p>
+                </div>
+            </div>
+            </div>
     </main>
 
     <footer class="footer">
@@ -144,7 +169,6 @@
             <p>© kucea.co.kr All Right Reserved.</p>
         </div>
     </footer>
-
     <script src="/js/lang-toggle.js"></script>
     <script>
         const hamburgerBtn = document.querySelector('.btn-hamburger');
