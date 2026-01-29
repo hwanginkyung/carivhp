@@ -1,10 +1,16 @@
 package carivex.homepages.web;
 
+import carivex.homepages.domain.inquiry.service.InquiryService;
+import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 
 @Controller
+@RequiredArgsConstructor
 public class PageController {
+
+    private final InquiryService inquiryService;
 
     @GetMapping({"/", "/index.html"})
     public String index() {
@@ -53,10 +59,16 @@ public class PageController {
     public String sub23En() { return "sub2-3_en"; }
 
     @GetMapping("/sub5-1.html")
-    public String sub51() { return "sub5-1"; }
+    public String sub51(Model model) {
+        model.addAttribute("inquiries", inquiryService.listAll());
+        return "sub5-1";
+    }
 
     @GetMapping("/en/sub5-1.html")
-    public String sub51En() { return "sub5-1_en"; }
+    public String sub51En(Model model) {
+        model.addAttribute("inquiries", inquiryService.listAll());
+        return "sub5-1_en";
+    }
 
     @GetMapping("/sub5-2.html")
     public String sub52() { return "sub5-2"; }
