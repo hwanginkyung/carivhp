@@ -69,4 +69,10 @@ public class PageController {
 
     @GetMapping("/en/sub5-3.html")
     public String sub53En() { return "sub5-3_en"; }
+
+    @GetMapping("/inquiry_form.html")
+    public String inquiryForm() { return "inquiry_form"; }
+
+    @GetMapping("/en/inquiry_form.html")
+    public String inquiryFormEn() { return "inquiry_form"; }
 }
