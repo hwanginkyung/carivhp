@@ -41,6 +41,14 @@ public class InquiryService {
     }
 
     @Transactional
+    public void updateAnswer(Long id, String answer) {
+        Inquiry i = inquiryRepository.findById(id)
+                .orElseThrow(() -> new IllegalArgumentException("Inquiry not found: " + id));
+        i.updateAnswer(answer);
+        i.updateStatus(InquiryStatus.DONE);
+    }
+
+    @Transactional
     public void delete(Long id) {
         inquiryRepository.deleteById(id);
     }

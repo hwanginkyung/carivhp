@@ -130,6 +130,22 @@
 Message
                 </div>
             </div>
+
+            <section class="admin-answer-section">
+                <div class="answer-card" th:classappend="${inquiry.answer} == null ? ' empty' : ''">
+                    <div th:if="${inquiry.answer != null}">
+                        <div class="answer-header">
+                            <div class="admin-profile">
+                                <span class="admin-badge">Admin</span>
+                                <span class="admin-name">Administrator</span>
+                            </div>
+                            <div class="answer-date" th:text="${#temporals.format(inquiry.updatedAt, 'yyyy-MM-dd')}">2025-01-02</div>
+                        </div>
+                        <div class="answer-body" th:text="${inquiry.answer}">Answer</div>
+                    </div>
+                    <div th:if="${inquiry.answer == null}">No reply has been posted yet.</div>
+                </div>
+            </section>
             </div>
     </main>
 

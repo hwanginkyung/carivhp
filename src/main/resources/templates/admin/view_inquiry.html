@@ -54,6 +54,9 @@
         <a class="btn btn-outline-secondary" th:href="@{/admin/inquiry.html}">목록</a>
     </div>
 
+    <div th:if="${success}" class="alert alert-success" th:text="${success}">저장되었습니다.</div>
+    <div th:if="${error}" class="alert alert-danger" th:text="${error}">에러</div>
+
     <div class="card shadow-sm">
         <div class="card-body">
             <div class="row mb-3">
@@ -84,6 +87,25 @@
                 <div class="detail-label">문의 내용</div>
                 <div class="flex-grow-1" th:text="${inquiry.content}">문의 내용</div>
             </div>
+            <div class="row mb-3">
+                <div class="detail-label">답변</div>
+                <div class="flex-grow-1" th:text="${inquiry.answer}">답변 내용</div>
+            </div>
+        </div>
+    </div>
+
+    <div class="card shadow-sm mt-4">
+        <div class="card-body">
+            <h5 class="mb-3">답변 작성</h5>
+            <form th:action="@{/admin/inquiry/answer}" method="post">
+                <input type="hidden" name="id" th:value="${inquiry.id}">
+                <div class="mb-3">
+                    <textarea class="form-control" name="answer" rows="6"
+                              placeholder="문의 답변을 입력해 주세요."
+                              th:text="${inquiry.answer}"></textarea>
+                </div>
+                <button type="submit" class="btn btn-success" style="background-color:#1D7C4D;border:none;">답변 저장</button>
+            </form>
         </div>
     </div>
 </div>
