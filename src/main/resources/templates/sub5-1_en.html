@@ -92,21 +92,22 @@
                     <div class="board-list-wrap">
                         <div class="board-header">
                             <span class="col-cate" style="width:100px; text-align:left;">상태</span>
-                            <span class="col-title" style="text-align:left;">제목</span>
+                            <span class="col-title" style="text-align:left;">Message</span>
                             <span class="col-date" style="text-align:right;">등록일</span>
                         </div>
 
                         <div class="board-item-list">
                             <div class="board-item" th:each="q : ${inquiries}">
                                 <div class="col-cate" style="width:100px; justify-content:center;">
-                                    <span class="status-badge" 
-                                          th:classappend="${q.status == 'ANSWERED'} ? 'done' : 'wait'"
-                                          th:text="${q.status == 'ANSWERED'} ? '답변완료' : '답변대기'">
+                                    <span class="status-badge"
+                                          th:classappend="${q.status == 'DONE'} ? 'done' : 'wait'"
+                                          th:text="${q.status == 'DONE'} ? 'Answered' : 'Pending'">
                                         답변대기
                                     </span>
                                 </div>
                                 <div class="col-title">
-                                    <a th:href="@{/inquiry_view.html(id=${q.id})}" th:text="${q.title}">문의 제목입니다.</a>
+                                    <a th:href="@{/en/inquiry_view.html(id=${q.id})}"
+                                       th:text="${#strings.abbreviate(q.content, 60)}">Inquiry message.</a>
                                 </div>
                                 <div class="col-date" th:text="${#temporals.format(q.createdAt, 'yyyy-MM-dd')}">
                                     2025-01-30
@@ -114,7 +115,7 @@
                             </div>
 
                             <div class="board-item" th:if="${#lists.isEmpty(inquiries)}" style="justify-content:center; padding: 40px 0;">
-                                <div style="color:#999;">등록된 문의 내역이 없습니다.</div>
+                                <div style="color:#999;">No inquiries submitted.</div>
                             </div>
                         </div>
                     </div>
