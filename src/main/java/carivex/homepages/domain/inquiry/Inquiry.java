@@ -32,6 +32,10 @@ public class Inquiry extends BaseTimeEntity {
     @Column(nullable = false)
     private String content;
 
+    @Lob
+    @Column
+    private String answer;
+
     @Enumerated(EnumType.STRING)
     @Column(nullable = false, length = 20)
     private InquiryStatus status = InquiryStatus.NEW;
@@ -47,5 +51,9 @@ public class Inquiry extends BaseTimeEntity {
 
     public void updateStatus(InquiryStatus status) {
         this.status = status;
+    }
+
+    public void updateAnswer(String answer) {
+        this.answer = answer;
     }
 }

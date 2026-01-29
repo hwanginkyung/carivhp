@@ -104,6 +104,19 @@ public class AdminController {
         return "admin/view_inquiry";
     }
 
+    @PostMapping("/inquiry/answer")
+    public String saveInquiryAnswer(@RequestParam("id") Long id,
+                                    @RequestParam("answer") String answer,
+                                    RedirectAttributes ra) {
+        if (answer == null || answer.trim().isEmpty()) {
+            ra.addFlashAttribute("error", "답변 내용을 입력해 주세요.");
+            return "redirect:/admin/view_inquiry.html?id=" + id;
+        }
+        inquiryService.updateAnswer(id, answer.trim());
+        ra.addFlashAttribute("success", "답변이 저장되었습니다.");
+        return "redirect:/admin/view_inquiry.html?id=" + id;
+    }
+
     @GetMapping("/write.html")
     public String write(@RequestParam(name = "type", defaultValue = "notice") String type,
                         @RequestParam(name = "id", required = false) Long id,
