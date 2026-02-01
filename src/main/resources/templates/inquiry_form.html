@@ -114,15 +114,7 @@
                                 <input type="email" id="uEmail" placeholder="example@email.com" name="email">
                             </div>
 
-                            <div class="form-group">
-                                <label for="uType">문의 유형 *</label>
-                                <select id="uType" name="type">
-                                    <option value="" disabled selected>선택해주세요</option>
-                                    <option value="OPTION1">옵션1</option>
-                                    <option value="OPTION2">옵션2</option>
-                                    <option value="OPTION3">옵션3</option>
-                                </select>
-                            </div>
+                            <input type="hidden" name="type" value="OPTION1">
 
                             <div class="form-group">
                                 <label for="uContent">문의 내용 *</label>
@@ -245,13 +237,11 @@
         const name = document.getElementById('uName').value;
         const contact = document.getElementById('uContact').value;
         const email = document.getElementById('uEmail').value;
-        const type = document.getElementById('uType').value;
         const content = document.getElementById('uContent').value;
 
         if(name === "") { e.preventDefault(); alert("이름을 입력해주세요."); return; }
         if(contact === "") { e.preventDefault(); alert("연락처를 입력해주세요."); return; }
         if(email === "") { e.preventDefault(); alert("이메일을 입력해주세요."); return; }
-        if(type === "" || type === null) { e.preventDefault(); alert("문의 유형을 선택해주세요."); return; }
         if(content === "") { e.preventDefault(); alert("문의 내용을 입력해주세요."); return; }
     });
 </script>
