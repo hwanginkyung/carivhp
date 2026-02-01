@@ -4,87 +4,88 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title th:text="${'Inquiry Details - ' + inquiry.type.label}">Inquiry Details</title>
-    <link rel="stylesheet" href="/css/style.css" />
+    <link rel="stylesheet" href="/main/resources/static/css/style.css" />
     <link rel="stylesheet" as="style" crossorigin href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.css" />
 </head>
 <body>
 
     <header class="header">
-        <div class="container header-inner">
-            <h1 class="logo">
-                <a href='./index_en.html'>
-                    <img src='/img/logo.png' alt="Korea Used Car Export Association">
-                </a>
-            </h1>
+    <div class="container header-inner">
+        <h1 class="logo">
+            <a href='/en'>
+                <img src='/img/logo.png' alt="Korea Used Car Export Association">
+            </a>
+          </h1>
 
-            <div class="mobile-controls">
-                <a class="lang-switch-mobile" th:href="@{/inquiry_view.html(id=${inquiry.id})}">
-                    <img src='/img/ko.png' alt="ko">
-                </a>
-
-                <button type="button" class="btn-hamburger">
-                    <span></span>
-                    <span></span>
-                    <span></span>
-                </button>
-            </div>
-
-            <nav class="gnb">
-                <ul class="main-menu">
-                    <li class="depth-1">
-                        <a href='./sub1-1_en.html'>About</a>
-                        <ul class="depth-2">
-                            <li><a href='./sub1-1_en.html'>Greeting</a></li>
-                            <li><a href='./sub1-2_en.html'>Mission & Vision</a></li>
-                            <li><a href='./sub1-3_en.html'>History</a></li>
-                        </ul>
-                    </li>
-
-                    <li class="depth-1">
-                        <a href='./sub2-1_en.html'>Business</a>
-                        <ul class="depth-2">
-                            <li><a href='./sub2-1_en.html'>Main Tasks</a></li>
-                            <li><a href='./sub2-2_en.html'>Key Projects</a></li>
-                            <li><a href='./sub2-3_en.html'>Partners</a></li>
-                        </ul>
-                    </li>
-
-                    <li class="depth-1">
-                        <a href='./sub3_en.html'>Resources</a>
-                        <ul class="depth-2">
-                            <li><a href='./sub3-1_en.html'>Export Statistics</a></li>
-                            <li><a href='./sub3-2_en.html'>Customs Guidance</a></li>
-                            <li><a href='./sub3-3_en.html'>Regulations & Notices</a></li>
-                            <li><a href='./sub3-4_en.html'>Forms & Templates</a></li>
-                        </ul>
-                    </li>
-
-                    <li class="depth-1">
-                        <a href='./sub4_en.html'>Notices</a>
-                        <ul class="depth-2">
-                            <li><a href='./sub4-1_en.html'>Media</a></li>
-                            <li><a href='./sub4-2_en.html'>Association News</a></li>
-                        </ul>
-                    </li>
-
-                    <li class="depth-1">
-                        <a href='./sub5-1_en.html'>Inquiry</a>
-                        <ul class="depth-2">
-                            <li><a href='./sub5-1_en.html'>Inquiry</a></li>
-                            <li><a href='./sub5-2_en.html'>Support</a></li>
-                            <li><a href='./sub5-3_en.html'>Directions</a></li>
-                        </ul>
-                    </li>
-                    <li class="depth-1">
-                        <a class="lang-switch" th:href="@{/inquiry_view.html(id=${inquiry.id})}" aria-label="View in Korean">
-                            <img src='/img/ko.png' alt="ko">
-                        </a>
-                    </li>
-                </ul>
-            </nav>
-            <div class="menu-overlay"></div>
+        <div class="mobile-controls">
+            <a class="lang-switch-mobile" th:href="@{/notice_view.html(id=${notice.id})}">
+                <img src='/img/ko.png' alt="ko">
+            </a>
+            
+            <button type="button" class="btn-hamburger">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
         </div>
-    </header>
+
+
+        <nav class="gnb">
+            <ul class="main-menu">
+                <li class="depth-1">
+                    <a href='/en/sub1-1.html'>About Us</a>
+                    <ul class="depth-2">
+                        <li><a href='/en/sub1-1.html'>Greeting</a></li>
+                        <li><a href='/en/sub1-2.html'>Mission & Vision</a></li>
+                        <li><a href='/en/sub1-3.html'>History</a></li>
+                    </ul>
+                </li>
+
+                <li class="depth-1">
+                    <a href='/en/sub2-1.html'>Business</a>
+                    <ul class="depth-2">
+                        <li><a href='/en/sub2-1.html'>Key Tasks</a></li>
+                        <li><a href='/en/sub2-2.html'>Key Projects</a></li>
+                        <li><a href='/en/sub2-3.html'>Partners</a></li>
+                    </ul>
+                </li>
+
+                <li class="depth-1">
+                    <a href='/en/sub3.html'>Resources</a>
+                    <ul class="depth-2">
+                        <li><a href='/en/sub3-1.html'>Export Statistics</a></li>
+                        <li><a href='/en/sub3-2.html'>Customs Standards & Guide</a></li>
+                        <li><a href='/en/sub3-3.html'>Laws & Notices</a></li>
+                        <li><a href='/en/sub3-4.html'>Forms & Templates</a></li>
+                    </ul>
+                </li>
+
+                <li class="depth-1">
+                    <a href='/en/sub4.html'>Notices</a>
+                    <ul class="depth-2">
+                        <li><a href='/en/sub4-1.html'>Press</a></li>
+                        <li><a href='/en/sub4-2.html'>Union Notices</a></li>
+                    </ul>
+                </li>
+
+                <li class="depth-1">
+                    <a href='/en/sub5-1.html'>Contact</a>
+                    <ul class="depth-2">
+                        <li><a href='/en/sub5-1.html'>Inquiry</a></li>
+                        <li><a href='/en/sub5-2.html'>Sponsorship</a></li>
+                        <li><a href='/en/sub5-3.html'>Directions</a></li>
+                    </ul>
+                </li>
+                <li class="depth-1">
+                    <a class="lang-switch" th:href="@{/notice_view.html(id=${notice.id})}">
+                        <img src='/img/ko.png' alt="ko">
+                    </a>
+                </li>
+            </ul>
+        </nav>
+        <div class="menu-overlay"></div>
+    </div>
+            </header>
 
     <main class="main-content">
         <div class="container">
@@ -101,20 +102,16 @@
 
                 <div class="view-meta">
                     <div class="meta-item">
+                        <span class="meta-label">Status:</span>
+                        <span class="status-badge2" th:text="${inquiry.status.label}">New</span>
+                    </div>
+                    <div class="meta-item">
                         <span class="meta-label">Name:</span>
                         <span class="meta-value" th:text="${inquiry.name}">Name</span>
-                    </div>
-                    <div class="meta-item">
-                        <span class="meta-label">Contact:</span>
-                        <span class="meta-value" th:text="${inquiry.contact}">010-0000-0000</span>
-                    </div>
-                    <div class="meta-item">
-                        <span class="meta-label">Email:</span>
-                        <span class="meta-value" th:text="${inquiry.email}">email@example.com</span>
-                    </div>
-                    <div class="meta-item">
-                        <span class="meta-label">Status:</span>
-                        <span class="meta-value" th:text="${inquiry.status.label}">New</span>
+                        <span class="writer-detail">
+                            (<span th:text="${inquiry.contact}">010-0000-0000</span> / 
+                            <span th:text="${inquiry.email}">email@example.com</span>)
+                        </span>
                     </div>
                     <div class="meta-item">
                         <span class="meta-label">Date:</span>
@@ -159,58 +156,94 @@ Message
 
     <script src="/js/lang-toggle.js"></script>
     <script>
-        const hamburgerBtn = document.querySelector('.btn-hamburger');
-        const closeBtn = document.querySelector('.btn-close-menu');
-        const gnb = document.querySelector('.gnb');
-        const overlay = document.querySelector('.menu-overlay');
-        const depth1Items = document.querySelectorAll('.depth-1');
+            const hamburgerBtn = document.querySelector('.btn-hamburger');
+            const closeBtn = document.querySelector('.btn-close-menu');
+            const gnb = document.querySelector('.gnb');
+            const overlay = document.querySelector('.menu-overlay');
+            const depth1Items = document.querySelectorAll('.depth-1');
 
-        let isTouchMode = false;
-        window.addEventListener('touchstart', () => { isTouchMode = true; });
-
-        if (hamburgerBtn) {
-            hamburgerBtn.addEventListener('click', () => {
-                if (gnb) gnb.classList.add('active');
-                if (overlay) overlay.classList.add('active');
-                document.body.style.overflow = 'hidden';
+            let isTouchMode = false;
+            window.addEventListener('touchstart', () => {
+                isTouchMode = true;
             });
-        }
 
-        const closeMenu = () => {
-            if (gnb) gnb.classList.remove('active');
-            if (overlay) overlay.classList.remove('active');
-            document.body.style.overflow = '';
+            if (hamburgerBtn) {
+                hamburgerBtn.addEventListener('click', () => {
+                    if (gnb) gnb.classList.add('active');
+                    if (overlay) overlay.classList.add('active');
+                    document.body.style.overflow = 'hidden';
+                });
+            }
+
+            const closeMenu = () => {
+                if (gnb) gnb.classList.remove('active');
+                if (overlay) overlay.classList.remove('active');
+                document.body.style.overflow = '';
+                
+                depth1Items.forEach(item => {
+                    item.classList.remove('open');        
+                    item.classList.remove('hover-active'); 
+                });
+            };
+
+            if (closeBtn) closeBtn.addEventListener('click', closeMenu);
+            if (overlay) overlay.addEventListener('click', closeMenu);
 
             depth1Items.forEach(item => {
-                item.classList.remove('open');
-                item.classList.remove('hover-active');
+                const link = item.querySelector('a'); 
+                const subMenu = item.querySelector('.depth-2'); 
+
+                item.addEventListener('mouseenter', () => {
+                    if (isTouchMode) return; 
+                    
+                    if (window.innerWidth > 1200) {
+                        item.classList.add('hover-active');
+                    }
+                });
+
+                item.addEventListener('mouseleave', () => {
+                    if (isTouchMode) return; 
+
+                    if (window.innerWidth > 1200) {
+                        item.classList.remove('hover-active');
+                    }
+                });
+
+                if (subMenu && link) {
+                    link.addEventListener('click', (e) => {
+                        const isMobile = window.innerWidth <= 1200; 
+
+                        if (isMobile) {
+                            e.preventDefault(); 
+                            item.classList.toggle('open'); 
+                        } else {
+                            
+                            if (!item.classList.contains('hover-active')) {
+                                e.preventDefault(); 
+                                depth1Items.forEach(other => {
+                                    if (other !== item) other.classList.remove('hover-active');
+                                });
+
+                                item.classList.add('hover-active');
+                            }
+                        }
+                    });
+                }
             });
-        };
 
-        if (closeBtn) {
-            closeBtn.addEventListener('click', closeMenu);
-        }
+            window.addEventListener('resize', () => {
+                if (window.innerWidth > 1200) {
+                    closeMenu();
+                }
+            });
 
-        if (overlay) {
-            overlay.addEventListener('click', closeMenu);
-        }
-
-        depth1Items.forEach(item => {
-            const subMenu = item.querySelector('.depth-2');
-            if (!subMenu) return;
-
-            item.addEventListener('click', (e) => {
-                if (window.innerWidth <= 768 || isTouchMode) {
-                    e.preventDefault();
-                    if (item.classList.contains('open')) {
-                        item.classList.remove('open');
-                    } else {
-                        depth1Items.forEach(i => i.classList.remove('open'));
-                        item.classList.add('open');
+            document.addEventListener('click', (e) => {
+                if (window.innerWidth > 1200) {
+                    if (!e.target.closest('.depth-1')) {
+                        depth1Items.forEach(item => item.classList.remove('hover-active'));
                     }
                 }
             });
-        });
-    </script>
+        </script>
 </body>
 </html>
