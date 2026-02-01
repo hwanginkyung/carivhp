@@ -114,15 +114,7 @@
                                 <input type="email" id="uEmail" placeholder="example@email.com" name="email">
                             </div>
 
-                            <div class="form-group">
-                                <label for="uType">Inquiry Type *</label>
-                                <select id="uType" name="type">
-                                    <option value="" disabled selected>Please select</option>
-                                    <option value="OPTION1">Option 1</option>
-                                    <option value="OPTION2">Option 2</option>
-                                    <option value="OPTION3">Option 3</option>
-                                </select>
-                            </div>
+                            <input type="hidden" name="type" value="OPTION1">
 
                             <div class="form-group">
                                 <label for="uContent">Message *</label>
@@ -244,13 +236,11 @@
         const name = document.getElementById('uName').value;
         const contact = document.getElementById('uContact').value;
         const email = document.getElementById('uEmail').value;
-        const type = document.getElementById('uType').value;
         const content = document.getElementById('uContent').value;
 
         if(name === "") { e.preventDefault(); alert("Please enter your name."); return; }
         if(contact === "") { e.preventDefault(); alert("Please enter your contact."); return; }
         if(email === "") { e.preventDefault(); alert("Please enter your email."); return; }
-        if(type === "" || type === null) { e.preventDefault(); alert("Please select an inquiry type."); return; }
         if(content === "") { e.preventDefault(); alert("Please enter your message."); return; }
     });
 </script>
