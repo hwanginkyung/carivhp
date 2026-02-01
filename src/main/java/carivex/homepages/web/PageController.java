@@ -87,7 +87,7 @@ public class PageController {
     public String inquiryForm() { return "inquiry_form"; }
 
     @GetMapping("/en/inquiry_form.html")
-    public String inquiryFormEn() { return "inquiry_form"; }
+    public String inquiryFormEn() { return "inquiry_form_en"; }
 
     @GetMapping("/inquiry_view.html")
     public String inquiryView(@RequestParam("id") Long id, Model model) {

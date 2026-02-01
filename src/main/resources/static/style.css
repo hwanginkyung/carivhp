@@ -797,7 +797,7 @@ img {
 
 .card-item-gray h3{
     font-weight: 500;
-    font-style: Medium;
+    font-style: normal;
     font-size: 24px;
     line-height: 36px;
     letter-spacing: 0;
@@ -1269,10 +1269,10 @@ img {
     border-radius: 4px;
     margin-bottom: 12px;
     font-weight: 400;
-    font-style: Regular;
+    font-style: normal;
     font-size: 16px;
     line-height: 24px;
-    letter-spacing: 0%;
+    letter-spacing: 0;
     text-align: center;
 }
 
@@ -1281,10 +1281,10 @@ img {
     margin-bottom: 34px;
     word-break: keep-all;
     font-weight: 700;
-    font-style: Bold;
+    font-style: normal;
     font-size: 40px;
     line-height: 56px;
-    letter-spacing: 0%;
+    letter-spacing: 0;
 }
 
 .view-meta {
@@ -1303,40 +1303,40 @@ img {
     color: #5B6064;
     font-family: Pretendard;
     font-weight: 500;
-    font-style: Medium;
+    font-style: normal;
     font-size: 20px;
     line-height: 32px;
-    letter-spacing: 0%;
+    letter-spacing: 0;
 }
 
 .meta-value {
     color: #5B6064;
     font-family: Pretendard;
     font-weight: 500;
-    font-style: Medium;
+    font-style: normal;
     font-size: 20px;
     line-height: 32px;
-    letter-spacing: 0%;
+    letter-spacing: 0;
 }
 
 .writer-detail {
     color: #5B6064;
     font-family: Pretendard;
     font-weight: 500;
-    font-style: Medium;
+    font-style: normal;
     font-size: 20px;
     line-height: 32px;
-    letter-spacing: 0%;
+    letter-spacing: 0;
 }
 
 .status-badge2 {
     color: #1D7C4D;
     font-family: Pretendard;
     font-weight: 500;
-    font-style: Bold;
+    font-style: normal;
     font-size: 20px;
     line-height: 32px;
-    letter-spacing: 0%;
+    letter-spacing: 0;
 }
 
 .view-divider {
@@ -1350,10 +1350,10 @@ img {
     color: #5B6064;
     margin-bottom: 48px;
     font-weight: 400;
-    font-style: Regular;
+    font-style: normal;
     font-size: 16px;
     line-height: 24px;
-    letter-spacing: 0%;
+    letter-spacing: 0;
 }
 
 .board-file-area {
@@ -1376,10 +1376,10 @@ img {
     gap: 8px;
     font-family: Pretendard;
     font-weight: 700;
-    font-style: Bold;
+    font-style: normal;
     font-size: 20px;
     line-height: 32px;
-    letter-spacing: 0%;
+    letter-spacing: 0;
 }
 
 
@@ -1420,7 +1420,7 @@ img {
     flex: 1; 
     font-family: Pretendard;
     font-weight: 500;
-    font-style: Medium;
+    font-style: normal;
     font-size: 14px;
     line-height: 22px;
     letter-spacing: 0.2px;
@@ -1434,10 +1434,10 @@ img {
     white-space: nowrap;
     font-family: Pretendard;
     font-weight: 500;
-    font-style: Medium;
+    font-style: normal;
     font-size: 16px;
     line-height: 24px;
-    letter-spacing: 0%;
+    letter-spacing: 0;
 }
 
 .file-download-btn {
@@ -1849,10 +1849,10 @@ img {
     .visual-text h2 {
         font-family: Pretendard;
         font-weight: 700;
-        font-style: Bold;
+        font-style: normal;
         font-size: 20px!important;
         line-height: 32px!important;
-        letter-spacing: 0%;
+        letter-spacing: 0;
         text-align: center;
         vertical-align: middle;
         word-break: keep-all;      
@@ -1862,10 +1862,10 @@ img {
     .visual-text h3 {
         font-family: Pretendard;
         font-weight: 700;
-        font-style: Bold;
+        font-style: normal;
         font-size: 16px;
         line-height: 24px;
-        letter-spacing: 0%;
+        letter-spacing: 0;
         text-align: center;
         vertical-align: middle;
         opacity:0.9;
@@ -1875,10 +1875,10 @@ img {
     .visual-text p{
         font-family: Pretendard;
         font-weight: 400;
-        font-style: Regular;
+        font-style: normal;
         font-size: 12px;
         line-height: 20px;
-        letter-spacing: 0%;
+        letter-spacing: 0;
         text-align: center;
         vertical-align: middle;
     }
@@ -1893,20 +1893,20 @@ img {
         margin-bottom:8px;
         font-family: Pretendard;
         font-weight: 700;
-        font-style: Bold;
+        font-style: normal;
         font-size: 24px;
         line-height: 36px;
-        letter-spacing: 0%;
+        letter-spacing: 0;
         text-align: center;
     }
 
     .section-header p {
         font-family: Pretendard;
         font-weight: 500;
-        font-style: Medium;
+        font-style: normal;
         font-size: 12px;
         line-height: 20px;
-        letter-spacing: 0%;
+        letter-spacing: 0;
         text-align: center;
     }
 
@@ -1935,10 +1935,10 @@ img {
         display:block;
         font-weight: 700;
         font-family: Pretendard;
-        font-style: Bold;
+        font-style: normal;
         font-size: 24px;
         line-height: 36px;
-        letter-spacing: 0%;
+        letter-spacing: 0;
     }
 
 
@@ -1973,15 +1973,15 @@ img {
         margin-bottom: 12px;
         word-break: keep-all; 
         font-weight: 700;
-        font-style: Bold;
+        font-style: normal;
         font-size: 16px;
         line-height: 24px;
-        letter-spacing: 0%;
+        letter-spacing: 0;
     }
 
     .img-info p {
         font-weight: 500;
-        font-style: Medium;
+        font-style: normal;
         font-size: 14px;
         line-height: 22px;
         letter-spacing: 0.2px;
@@ -1998,20 +1998,20 @@ img {
 
     .card-item-gray h3{
         font-weight: 500;
-        font-style: Medium;
+        font-style: normal;
         font-size: 16px;
         line-height: 24px;
-        letter-spacing: 0%;
+        letter-spacing: 0;
     }
 
     .card-item-gray p{
         margin-top: 8px;
         margin-bottom:8px;
         font-weight: 400;
-        font-style: Regular;
+        font-style: normal;
         font-size: 12px;
         line-height: 20px;
-        letter-spacing: 0%;
+        letter-spacing: 0;
     }
 
     .main-section1{
@@ -2031,7 +2031,7 @@ img {
 
     .sub-container p{
         font-weight: 500;
-        font-style: Medium;
+        font-style: normal;
         font-size: 14px;
         line-height: 22px;
         letter-spacing: 0;
@@ -2040,7 +2040,7 @@ img {
 
     .sub-container h4{
             font-weight: 500;
-            font-style: Medium;
+            font-style: normal;
             font-size: 14px;
             line-height: 22px;
             letter-spacing: 0.2px;
@@ -2055,7 +2055,7 @@ img {
 
     .sub-container2 p{
         font-weight: 500;
-        font-style: Medium;
+        font-style: normal;
         font-size: 14px;
         line-height: 22px;
         letter-spacing: 0.2;
@@ -2082,10 +2082,10 @@ img {
     .sub-item h3{
         font-weight: 700;
         margin-bottom:12px;
-        font-style: Bold;
+        font-style: normal;
         font-size: 16px;
         line-height: 24px;
-        letter-spacing: 0%;
+        letter-spacing: 0;
         }
 
     .sub-list {
@@ -2133,7 +2133,7 @@ img {
             position: relative;
             padding-left: 16px;
             font-weight: 500;
-            font-style: Medium;
+            font-style: normal;
             font-size: 14px;
             line-height: 22px;
             letter-spacing: 0.2px;
@@ -2151,7 +2151,7 @@ img {
     .sub-list2 dd{
             margin: 0;
             font-weight: 500;
-            font-style: Medium;
+            font-style: normal;
             font-size: 14px;
             line-height: 22px;
             letter-spacing: 0.2px;
@@ -2180,7 +2180,7 @@ img {
 
     .sub-card1 p{
         font-weight: 700;
-        font-style: Bold;
+        font-style: normal;
         font-size: 14px;
         line-height: 22px;
         letter-spacing: 0.1;
@@ -2213,7 +2213,7 @@ img {
         line-height: 24px;
         letter-spacing: 0;
         margin-bottom:16px;
-        font-style: Bold;
+        font-style: normal;
         }
 
     .sub-card2 p{
@@ -2223,15 +2223,15 @@ img {
         line-height: 22px;
         letter-spacing: 0.2;
         vertical-align: middle;
-        font-style: Medium;
+        font-style: normal;
         }
 
     .sub-card-container3 p{
             font-weight: 400;
-            font-style: Regular;
+            font-style: normal;
             font-size: 10px;
             line-height: 16px;
-            letter-spacing: 0%;
+            letter-spacing: 0;
             text-align: right;
         }
 
@@ -2254,20 +2254,20 @@ img {
             margin-top:8px;
             font-family: Pretendard;
             font-weight: 500;
-            font-style: Medium;
+            font-style: normal;
             font-size: 16px;
             line-height: 24px;
-            letter-spacing: 0%;
+            letter-spacing: 0;
         }
 
     .card-item p {
             margin-top:8px;
             font-family: Pretendard;
             font-weight: 400;
-            font-style: Regular;
+            font-style: normal;
             font-size: 12px;
             line-height: 20px;
-            letter-spacing: 0%;
+            letter-spacing: 0;
     }
 
     .time-item{ 
@@ -2294,7 +2294,7 @@ img {
         font-weight: 700;
         letter-spacing: 0;
         vertical-align: middle;
-        font-style: Bold;
+        font-style: normal;
         font-size: 16px;
         line-height: 24px;
     }
@@ -2307,7 +2307,7 @@ img {
 
     .time-info h4{
         font-weight: 500;
-        font-style: Medium;
+        font-style: normal;
         font-size: 14px;
         line-height: 22px;
         letter-spacing: 0.2px;
@@ -2315,7 +2315,7 @@ img {
 
     .time-info p{
         font-weight: 400;
-        font-style: Regular;
+        font-style: normal;
         font-size: 14px;
         line-height: 22px;
         letter-spacing: 0.2px;
@@ -2361,7 +2361,7 @@ img {
     .partner-title p {
         margin-left: 0;        
         font-weight: 500;
-        font-style: Medium;
+        font-style: normal;
         font-size: 14px;
         line-height: 22px;
         letter-spacing: 0.2px;
@@ -2450,7 +2450,7 @@ img {
     .check-list li {
         margin-top:0px;
         font-weight: 400;
-        font-style: Regular;
+        font-style: normal;
         font-size: 12px;
         line-height: 20px;
     }
@@ -2465,10 +2465,10 @@ img {
         font-family: Pretendard;
         justify-content: center;
         font-weight: 500;
-        font-style: Medium;
+        font-style: normal;
         font-size: 16px;
         line-height: 24px;
-        letter-spacing: 0%;
+        letter-spacing: 0;
     }
 
     .btn-group {
@@ -2497,7 +2497,7 @@ img {
     .btn-submit p{
         font-family: 'Inter';
         font-weight: 450;
-        font-style: Medium;
+        font-style: normal;
         font-size: 16px;
         leading-trim: NONE;
         line-height: 28px;
@@ -2516,15 +2516,15 @@ img {
         font-weight: 700;
         margin-bottom: 8px;
         font-weight: 700;
-        font-style: Bold;
+        font-style: normal;
         font-size: 16px;
         line-height: 24px;
-        letter-spacing: 0%;
+        letter-spacing: 0;
     }
     .mobile-address-card p {
         color: #5B6064;
         font-weight: 500;
-        font-style: Medium;
+        font-style: normal;
         font-size: 14px;
         line-height: 22px;
         letter-spacing: 0.2px;
@@ -2545,19 +2545,19 @@ img {
     .footer-info h1 {
         font-family: Pretendard;
         font-weight: 700;
-        font-style: Bold;
+        font-style: normal;
         font-size: 16px;
         line-height: 24px;
-        letter-spacing: 0%;
+        letter-spacing: 0;
     }
 
     .footer-info p {
         font-family: Pretendard;
         font-weight: 400;
-        font-style: Regular;
+        font-style: normal;
         font-size: 14px;
         line-height: 20px;
-        letter-spacing: 0%;
+        letter-spacing: 0;
         gap:3.5px;
     }
 
@@ -2574,10 +2574,10 @@ img {
         color: #5B6064;
         font-family: Pretendard;
         font-weight: 500;
-        font-style: Medium;
+        font-style: normal;
         font-size: 12px;
         line-height: 20px;
-        letter-spacing: 0%;
+        letter-spacing: 0;
     }
 
     .board-view-header {
@@ -2593,10 +2593,10 @@ img {
         margin-bottom: 12px;
         font-family: Pretendard;
         font-weight: 400;
-        font-style: Regular;
+        font-style: normal;
         font-size: 10px;
         line-height: 16px;
-        letter-spacing: 0%;
+        letter-spacing: 0;
         text-align: center;
     }
 
@@ -2605,11 +2605,11 @@ img {
         margin-bottom: 12px;
         word-break: keep-all;
         font-weight: 700;
-        font-style: Bold;
+        font-style: normal;
         font-family: Pretendard;
         font-size: 24px;
         line-height: 36px;
-        letter-spacing: 0%;
+        letter-spacing: 0;
     }
 
     .view-meta {
@@ -2627,10 +2627,10 @@ img {
     .meta-label {
         color: #5B6064;
         font-family: Pretendard;
-        letter-spacing: 0%;
+        letter-spacing: 0;
         font-family: Pretendard;
         font-weight: 500;
-        font-style: Medium;
+        font-style: normal;
         font-size: 10px;
         line-height: 16px;
     }
@@ -2638,10 +2638,10 @@ img {
     .status-badge2 {
         color: #1D7C4D;
         font-family: Pretendard;
-        letter-spacing: 0%;
+        letter-spacing: 0;
         font-family: Pretendard;
         font-weight: 500;
-        font-style: Bold;
+        font-style: normal;
         font-size: 10px;
         line-height: 16px;
     }
@@ -2649,10 +2649,10 @@ img {
     .meta-value {
         color: #5B6064;
         font-family: Pretendard;
-        letter-spacing: 0%;
+        letter-spacing: 0;
         font-family: Pretendard;
         font-weight: 500;
-        font-style: Medium;
+        font-style: normal;
         font-size: 10px;
         line-height: 16px;
     }
@@ -2660,10 +2660,10 @@ img {
     .writer-detail {
         color: #5B6064;
         font-family: Pretendard;
-        letter-spacing: 0%;
+        letter-spacing: 0;
         font-family: Pretendard;
         font-weight: 500;
-        font-style: Medium;
+        font-style: normal;
         font-size: 10px;
         line-height: 16px;
     }
@@ -2678,7 +2678,7 @@ img {
         min-height: 150px;
         color: #5B6064;
         margin-bottom: 104px;
-        font-style: Regular;
+        font-style: normal;
         font-family: Pretendard;
         font-weight: 400;
         font-size: 14px;
@@ -2706,10 +2706,10 @@ img {
         gap: 8px;
         font-family: Pretendard;
         font-weight: 700;
-        font-style: Bold;
+        font-style: normal;
         font-size: 16px;
         line-height: 24px;
-        letter-spacing: 0%;
+        letter-spacing: 0;
     }
 
 
@@ -2752,10 +2752,10 @@ img {
         flex: 1; 
         font-family: Pretendard;
         font-weight: 500;
-        font-style: Medium;
+        font-style: normal;
         font-size: 12px;
         line-height: 20px;
-        letter-spacing: 0%;
+        letter-spacing: 0;
     }
 
     .file-name {
@@ -2766,10 +2766,10 @@ img {
         white-space: nowrap;
         font-family: Pretendard;
         font-weight: 500;
-        font-style: Medium;
+        font-style: normal;
         font-size: 14px;
         line-height: 22px;
-        letter-spacing: 0%;
+        letter-spacing: 0;
     }
 
     .file-download-btn {
