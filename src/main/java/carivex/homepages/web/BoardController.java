@@ -208,7 +208,7 @@ public class BoardController {
     }
 
     private Pageable pageable(int page) {
-        return PageRequest.of(page, PAGE_SIZE, Sort.by(Sort.Direction.DESC, "id"));
+        return PageRequest.of(page, PAGE_SIZE, Sort.by(Sort.Order.desc("pinned"), Sort.Order.desc("id")));
     }
 
     private Pageable resourcePageable(int page) {

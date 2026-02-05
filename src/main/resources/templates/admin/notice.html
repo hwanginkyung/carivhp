@@ -9,6 +9,7 @@
         .sidebar a { color: #adb5bd; text-decoration: none; padding: 15px 20px; display: block; border-bottom: 1px solid #495057; }
         .sidebar a:hover, .sidebar a.active { background-color: #1D7C4D; color: white; }
         .content { margin-left: 250px; padding: 30px; }
+        .pinned-row { background-color: #f2f2f2; }
     </style>
 </head>
 <body>
@@ -41,7 +42,7 @@
                         </tr>
                     </thead>
                     <tbody>
-                        <tr th:each="n : ${notices}">
+                        <tr th:each="n : ${notices}" th:classappend="${n.pinned} ? 'pinned-row'">
                             <td th:text="${n.id}">1</td>
                             <td><span class="badge bg-secondary" th:text="${n.category.label}">언론 보도</span></td>
                             <td class="text-start">
@@ -53,6 +54,11 @@
                             <td th:text="${#temporals.format(n.createdAt, 'yyyy-MM-dd')}">2025-01-02</td>
                             <td>
                                 <a th:href="@{/admin/write.html(type='notice', id=${n.id})}" class="btn btn-sm btn-outline-primary">수정</a>
+                                <form th:action="@{/admin/notice/pin}" method="post" style="display:inline;">
+                                    <input type="hidden" name="id" th:value="${n.id}">
+                                    <button type="submit" class="btn btn-sm btn-outline-secondary"
+                                            th:text="${n.pinned} ? '고정 해제' : '고정'">고정</button>
+                                </form>
                                 <form th:action="@{/admin/delete}" method="post" style="display:inline;">
                                     <input type="hidden" name="type" value="notice">
                                     <input type="hidden" name="id" th:value="${n.id}">

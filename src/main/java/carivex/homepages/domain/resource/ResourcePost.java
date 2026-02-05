@@ -41,6 +41,9 @@ public class ResourcePost extends BaseTimeEntity {
     @Column(nullable = false)
     private boolean pinned = false;
 
+    @Column(nullable = false)
+    private Long views = 0L;
+
     public ResourcePost(ResourceCategory category, String title, String content,
                         String titleEn, String contentEn,
                         String fileOriginalName, String fileStoredName) {
