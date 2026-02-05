@@ -189,16 +189,22 @@ public class BoardController {
 
     @GetMapping("/view_resource_public.html")
     public String resourceView(@RequestParam("id") Long id, Model model) {
-        ResourcePost p = resourceService.get(id);
-        model.addAttribute("resource", p);
-        return "view_resource_public";
+        return resourceService.find(id)
+                .map(resource -> {
+                    model.addAttribute("resource", resource);
+                    return "view_resource_public";
+                })
+                .orElse("redirect:/sub3.html");
     }
 
     @GetMapping("/en/view_resource_public.html")
     public String resourceViewEn(@RequestParam("id") Long id, Model model) {
-        ResourcePost p = resourceService.get(id);
-        model.addAttribute("resource", p);
-        return "view_resource_public_en";
+        return resourceService.find(id)
+                .map(resource -> {
+                    model.addAttribute("resource", resource);
+                    return "view_resource_public_en";
+                })
+                .orElse("redirect:/en/sub3.html");
     }
 
     private Pageable pageable(int page) {
