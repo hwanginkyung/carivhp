@@ -23,7 +23,7 @@ public class NoticeService {
 
     @Transactional(readOnly = true)
     public List<Notice> listAll() {
-        return noticeRepository.findAll(Sort.by(Sort.Direction.DESC, "id"));
+        return noticeRepository.findAll(Sort.by(Sort.Order.desc("pinned"), Sort.Order.desc("id")));
     }
 
     @Transactional(readOnly = true)
@@ -33,7 +33,7 @@ public class NoticeService {
 
     @Transactional(readOnly = true)
     public List<Notice> listByCategory(NoticeCategory category) {
-        return noticeRepository.findByCategory(category, Sort.by(Sort.Direction.DESC, "id"));
+        return noticeRepository.findByCategory(category, Sort.by(Sort.Order.desc("pinned"), Sort.Order.desc("id")));
     }
 
     @Transactional(readOnly = true)
@@ -62,6 +62,13 @@ public class NoticeService {
         String titleEn = translationService.translateToEnglishText(title);
         String contentEn = translationService.translateToEnglishHtml(content);
         n.update(category, title, content, titleEn, contentEn, fileOriginal, fileStored);
+        return n;
+    }
+
+    @Transactional
+    public Notice togglePinned(Long id) {
+        Notice n = get(id);
+        n.setPinned(!n.isPinned());
         return n;
     }
 
