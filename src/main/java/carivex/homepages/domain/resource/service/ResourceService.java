@@ -46,6 +46,11 @@ public class ResourceService {
                 .orElseThrow(() -> new IllegalArgumentException("Resource not found: " + id));
     }
 
+    @Transactional(readOnly = true)
+    public java.util.Optional<ResourcePost> find(Long id) {
+        return resourceRepository.findById(id);
+    }
+
     @Transactional
     public ResourcePost create(ResourceCategory category, String title, String content,
                                String fileOriginal, String fileStored) {

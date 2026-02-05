@@ -100,8 +100,8 @@
                             <div class="board-item" th:each="q : ${inquiries}">
                                 <div class="col-cate" style="width:100px; justify-content:center;">
                                     <span class="status-badge"
-                                          th:classappend="${q.status == 'DONE'} ? 'done' : 'wait'"
-                                          th:text="${q.status == 'DONE'} ? '답변완료' : '답변대기'">
+                                          th:classappend="${q.status.name() == 'DONE'} ? 'done' : 'wait'"
+                                          th:text="${q.status.name() == 'DONE'} ? '답변완료' : '답변대기'">
                                         답변대기
                                     </span>
                                 </div>
