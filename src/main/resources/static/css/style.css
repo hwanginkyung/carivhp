@@ -1112,6 +1112,10 @@ img {
     transition: background 0.2s;
 }
 
+.board-item.is-pinned {
+    background: #f2f2f2;
+}
+
 .board-item:hover {
     background-color: #f9f9f9; 
 }

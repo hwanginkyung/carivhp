@@ -99,7 +99,7 @@ public class BoardController {
     // ===== Resources (public)
     @GetMapping("/sub3.html")
     public String resourceAll(@RequestParam(name = "page", defaultValue = "0") int page, Model model) {
-        Page<ResourcePost> resources = resourceService.listAll(pageable(page));
+        Page<ResourcePost> resources = resourceService.listAll(resourcePageable(page));
         model.addAttribute("resources", resources.getContent());
         addPagination(model, resources);
         model.addAttribute("activeTab", "all");
@@ -108,7 +108,7 @@ public class BoardController {
 
     @GetMapping("/en/sub3.html")
     public String resourceAllEn(@RequestParam(name = "page", defaultValue = "0") int page, Model model) {
-        Page<ResourcePost> resources = resourceService.listAll(pageable(page));
+        Page<ResourcePost> resources = resourceService.listAll(resourcePageable(page));
         model.addAttribute("resources", resources.getContent());
         addPagination(model, resources);
         model.addAttribute("activeTab", "all");
@@ -117,7 +117,7 @@ public class BoardController {
 
     @GetMapping("/sub3-1.html")
     public String resourceStats(@RequestParam(name = "page", defaultValue = "0") int page, Model model) {
-        Page<ResourcePost> resources = resourceService.listByCategory(ResourceCategory.EXPORT_STATS, pageable(page));
+        Page<ResourcePost> resources = resourceService.listByCategory(ResourceCategory.EXPORT_STATS, resourcePageable(page));
         model.addAttribute("resources", resources.getContent());
         addPagination(model, resources);
         model.addAttribute("activeTab", "export_stats");
@@ -126,7 +126,7 @@ public class BoardController {
 
     @GetMapping("/en/sub3-1.html")
     public String resourceStatsEn(@RequestParam(name = "page", defaultValue = "0") int page, Model model) {
-        Page<ResourcePost> resources = resourceService.listByCategory(ResourceCategory.EXPORT_STATS, pageable(page));
+        Page<ResourcePost> resources = resourceService.listByCategory(ResourceCategory.EXPORT_STATS, resourcePageable(page));
         model.addAttribute("resources", resources.getContent());
         addPagination(model, resources);
         model.addAttribute("activeTab", "export_stats");
@@ -135,7 +135,7 @@ public class BoardController {
 
     @GetMapping("/sub3-2.html")
     public String resourceCustoms(@RequestParam(name = "page", defaultValue = "0") int page, Model model) {
-        Page<ResourcePost> resources = resourceService.listByCategory(ResourceCategory.CUSTOMS_STANDARD, pageable(page));
+        Page<ResourcePost> resources = resourceService.listByCategory(ResourceCategory.CUSTOMS_STANDARD, resourcePageable(page));
         model.addAttribute("resources", resources.getContent());
         addPagination(model, resources);
         model.addAttribute("activeTab", "customs");
@@ -144,7 +144,7 @@ public class BoardController {
 
     @GetMapping("/en/sub3-2.html")
     public String resourceCustomsEn(@RequestParam(name = "page", defaultValue = "0") int page, Model model) {
-        Page<ResourcePost> resources = resourceService.listByCategory(ResourceCategory.CUSTOMS_STANDARD, pageable(page));
+        Page<ResourcePost> resources = resourceService.listByCategory(ResourceCategory.CUSTOMS_STANDARD, resourcePageable(page));
         model.addAttribute("resources", resources.getContent());
         addPagination(model, resources);
         model.addAttribute("activeTab", "customs");
@@ -153,7 +153,7 @@ public class BoardController {
 
     @GetMapping("/sub3-3.html")
     public String resourceLaw(@RequestParam(name = "page", defaultValue = "0") int page, Model model) {
-        Page<ResourcePost> resources = resourceService.listByCategory(ResourceCategory.LAW_OFFICIAL, pageable(page));
+        Page<ResourcePost> resources = resourceService.listByCategory(ResourceCategory.LAW_OFFICIAL, resourcePageable(page));
         model.addAttribute("resources", resources.getContent());
         addPagination(model, resources);
         model.addAttribute("activeTab", "law");
@@ -162,7 +162,7 @@ public class BoardController {
 
     @GetMapping("/en/sub3-3.html")
     public String resourceLawEn(@RequestParam(name = "page", defaultValue = "0") int page, Model model) {
-        Page<ResourcePost> resources = resourceService.listByCategory(ResourceCategory.LAW_OFFICIAL, pageable(page));
+        Page<ResourcePost> resources = resourceService.listByCategory(ResourceCategory.LAW_OFFICIAL, resourcePageable(page));
         model.addAttribute("resources", resources.getContent());
         addPagination(model, resources);
         model.addAttribute("activeTab", "law");
@@ -171,7 +171,7 @@ public class BoardController {
 
     @GetMapping("/sub3-4.html")
     public String resourceForms(@RequestParam(name = "page", defaultValue = "0") int page, Model model) {
-        Page<ResourcePost> resources = resourceService.listByCategory(ResourceCategory.FORMS, pageable(page));
+        Page<ResourcePost> resources = resourceService.listByCategory(ResourceCategory.FORMS, resourcePageable(page));
         model.addAttribute("resources", resources.getContent());
         addPagination(model, resources);
         model.addAttribute("activeTab", "forms");
@@ -180,7 +180,7 @@ public class BoardController {
 
     @GetMapping("/en/sub3-4.html")
     public String resourceFormsEn(@RequestParam(name = "page", defaultValue = "0") int page, Model model) {
-        Page<ResourcePost> resources = resourceService.listByCategory(ResourceCategory.FORMS, pageable(page));
+        Page<ResourcePost> resources = resourceService.listByCategory(ResourceCategory.FORMS, resourcePageable(page));
         model.addAttribute("resources", resources.getContent());
         addPagination(model, resources);
         model.addAttribute("activeTab", "forms");
@@ -209,6 +209,10 @@ public class BoardController {
 
     private Pageable pageable(int page) {
         return PageRequest.of(page, PAGE_SIZE, Sort.by(Sort.Direction.DESC, "id"));
+    }
+
+    private Pageable resourcePageable(int page) {
+        return PageRequest.of(page, PAGE_SIZE, Sort.by(Sort.Order.desc("pinned"), Sort.Order.desc("id")));
     }
 
     private void addPagination(Model model, Page<?> page) {

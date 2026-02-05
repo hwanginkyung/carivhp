@@ -22,7 +22,7 @@ public class ResourceService {
 
     @Transactional(readOnly = true)
     public List<ResourcePost> listAll() {
-        return resourceRepository.findAll(Sort.by(Sort.Direction.DESC, "id"));
+        return resourceRepository.findAll(Sort.by(Sort.Order.desc("pinned"), Sort.Order.desc("id")));
     }
 
     @Transactional(readOnly = true)
@@ -32,7 +32,7 @@ public class ResourceService {
 
     @Transactional(readOnly = true)
     public List<ResourcePost> listByCategory(ResourceCategory category) {
-        return resourceRepository.findByCategory(category, Sort.by(Sort.Direction.DESC, "id"));
+        return resourceRepository.findByCategory(category, Sort.by(Sort.Order.desc("pinned"), Sort.Order.desc("id")));
     }
 
     @Transactional(readOnly = true)
@@ -68,6 +68,13 @@ public class ResourceService {
         String titleEn = translationService.translateToEnglishText(title);
         String contentEn = translationService.translateToEnglishHtml(content);
         p.update(category, title, content, titleEn, contentEn, fileOriginal, fileStored);
+        return p;
+    }
+
+    @Transactional
+    public ResourcePost togglePinned(Long id) {
+        ResourcePost p = get(id);
+        p.setPinned(!p.isPinned());
         return p;
     }
 
