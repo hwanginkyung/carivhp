@@ -110,7 +110,7 @@
                             <span class="col-date">Date</span>
                         </div>
                         <div class="board-item-list">
-                            <div class="board-item" th:each="r : ${resources}">
+                            <div class="board-item" th:each="r : ${resources}" th:classappend="${r.pinned} ? ' is-pinned'">
                                 <div class="col-cate"><span class="cate-badge" th:text="${r.category.label}">Export Statistics</span></div>
                                 <div class="col-title">
                                     <a th:href="@{/en/view_resource_public.html(id=${r.id})}" th:text="${r.titleEn != null ? r.titleEn : r.title}">Title</a>

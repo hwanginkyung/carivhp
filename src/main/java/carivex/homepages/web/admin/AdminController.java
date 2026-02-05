@@ -239,6 +239,12 @@ public class AdminController {
         return "redirect:/admin/notice.html";
     }
 
+    @PostMapping("/resource/pin")
+    public String toggleResourcePin(@RequestParam("id") Long id) {
+        resourceService.togglePinned(id);
+        return "redirect:/admin/resource.html";
+    }
+
     @PostMapping("/banner/save")
     public String saveBanner(@Valid @ModelAttribute("form") BannerForm form,
                              BindingResult bindingResult,

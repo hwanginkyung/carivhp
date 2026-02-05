@@ -38,6 +38,9 @@ public class ResourcePost extends BaseTimeEntity {
     @Column(length = 255)
     private String fileStoredName;
 
+    @Column(nullable = false)
+    private boolean pinned = false;
+
     public ResourcePost(ResourceCategory category, String title, String content,
                         String titleEn, String contentEn,
                         String fileOriginalName, String fileStoredName) {
@@ -48,6 +51,10 @@ public class ResourcePost extends BaseTimeEntity {
         this.contentEn = contentEn;
         this.fileOriginalName = fileOriginalName;
         this.fileStoredName = fileStoredName;
+    }
+
+    public void setPinned(boolean pinned) {
+        this.pinned = pinned;
     }
 
     public void update(ResourceCategory category, String title, String content,

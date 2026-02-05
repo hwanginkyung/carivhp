@@ -29,6 +29,9 @@
             margin-left: 250px;
             padding: 30px;
         }
+        .pinned-row {
+            background-color: #f2f2f2;
+        }
     </style>
 </head>
 <body>
@@ -69,12 +72,12 @@
                     <th>제목</th>
                     <th style="width:100px;">첨부</th>
                     <th style="width:150px;">등록일</th>
-                    <th style="width:150px;">관리</th>
+                    <th style="width:200px;">관리</th>
                 </tr>
                 </thead>
 
                 <tbody>
-                <tr th:each="r : ${resources}">
+                <tr th:each="r : ${resources}" th:classappend="${r.pinned} ? 'pinned-row'">
                     <td th:text="${r.id}">1</td>
 
                     <td>
@@ -108,6 +111,17 @@
                            class="btn btn-sm btn-outline-primary">
                             수정
                         </a>
+
+                        <form th:action="@{/admin/resource/pin}"
+                              method="post"
+                              style="display:inline;">
+                            <input type="hidden" name="id" th:value="${r.id}">
+                            <button type="submit"
+                                    class="btn btn-sm btn-outline-secondary"
+                                    th:text="${r.pinned} ? '고정 해제' : '고정'">
+                                고정
+                            </button>
+                        </form>
 
                         <form th:action="@{/admin/delete}"
                               method="post"
