@@ -74,6 +74,19 @@
     document.head.appendChild(script);
   };
 
+  const applyLazyLoading = () => {
+    document.querySelectorAll('img').forEach((img) => {
+      if (img.closest('.header') || img.closest('.visual-bg')) {
+        return;
+      }
+      if (img.hasAttribute('loading')) {
+        return;
+      }
+      img.setAttribute('loading', 'lazy');
+      img.setAttribute('decoding', 'async');
+    });
+  };
+
   document.addEventListener('DOMContentLoaded', () => {
     document.querySelectorAll('[data-lang-toggle]').forEach((toggle) => {
       toggle.addEventListener('click', toggleLanguage);
@@ -87,5 +100,6 @@
 
     updateToggleLabel(getStoredLang());
     loadGoogleTranslate();
+    applyLazyLoading();
   });
 })();
