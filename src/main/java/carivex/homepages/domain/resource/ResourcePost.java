@@ -25,11 +25,10 @@ public class ResourcePost extends BaseTimeEntity {
     @Column(length = 200)
     private String titleEn;
 
-    @Lob
-    @Column(nullable = false)
+    @Column(nullable = false, columnDefinition = "LONGTEXT")
     private String content;
 
-    @Lob
+    @Column(columnDefinition = "LONGTEXT")
     private String contentEn;
 
     @Column(length = 255)

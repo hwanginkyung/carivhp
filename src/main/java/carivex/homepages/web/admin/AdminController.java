@@ -17,6 +17,7 @@ import carivex.homepages.domain.storage.FileStorageService;
 import carivex.homepages.domain.storage.StoredFile;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -27,6 +28,7 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import java.io.IOException;
 import java.util.Arrays;
 import java.util.List;
+import java.util.Map;
 
 @Controller
 @RequiredArgsConstructor
@@ -149,6 +151,20 @@ public class AdminController {
         model.addAttribute("resourceCategories", ResourceCategory.values());
         model.addAttribute("mode", (id == null) ? "create" : "edit");
         return "admin/write";
+    }
+
+    /** 본문 에디터에서 드래그·붙여넣기한 이미지를 저장하고 접근 URL을 반환한다. (관리자 전용) */
+    @PostMapping("/images")
+    @ResponseBody
+    public ResponseEntity<Map<String, String>> uploadImage(@RequestParam("image") MultipartFile image) {
+        try {
+            StoredFile stored = fileStorageService.storeImage(image);
+            return ResponseEntity.ok(Map.of("url", "/uploads/" + stored.storedName()));
+        } catch (IllegalArgumentException e) {
+            return ResponseEntity.badRequest().body(Map.of("error", e.getMessage()));
+        } catch (IOException e) {
+            return ResponseEntity.internalServerError().body(Map.of("error", "업로드 중 오류가 발생했습니다."));
+        }
     }
 
     @PostMapping("/save")

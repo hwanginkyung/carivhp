@@ -28,12 +28,10 @@ public class Inquiry extends BaseTimeEntity {
     @Column(nullable = false, length = 20)
     private InquiryType type;
 
-    @Lob
-    @Column(nullable = false)
+    @Column(nullable = false, columnDefinition = "LONGTEXT")
     private String content;
 
-    @Lob
-    @Column
+    @Column(columnDefinition = "LONGTEXT")
     private String answer;
 
     @Enumerated(EnumType.STRING)
